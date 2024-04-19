@@ -13,3 +13,4 @@ pt-BR:
   participants:
     success: Avaliado cadastrado com sucesso
   save: Salvar
+  already_exists: já está em uso

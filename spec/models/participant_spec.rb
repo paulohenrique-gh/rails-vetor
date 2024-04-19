@@ -45,5 +45,27 @@ RSpec.describe Participant, type: :model do
       expect(new_participant.valid?).to be false
       expect(new_participant.errors).to include :email
     end
+
+    it 'returns false when cpf is invalid' do
+      participant = build(:participant, cpf: '111222333444555')
+    
+      expect(participant.valid?).to be false
+      expect(participant.errors).to include :cpf
+    end
+
+    it 'returns false when email is invalid' do
+      participant = build(:participant, email: 'emailinvalido')
+
+      expect(participant.valid?).to be false
+      expect(participant.errors).to include :email
+    end
+
+    it 'returns true when all fields are valid' do
+      participant = build(:participant, name: 'Pedro Martins', cpf: '163.375.600-94',
+                                        email: 'pedro@martins.com', date_of_birth: '1997-10-14')
+
+      expect(participant.valid?).to be true
+      expect(participant.errors).to be_empty
+    end
   end
 end
