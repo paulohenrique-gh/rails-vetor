@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_19_163613) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_19_183051) do
   create_table "participants", force: :cascade do |t|
     t.string "name", null: false
     t.string "cpf", null: false
@@ -18,7 +18,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_163613) do
     t.date "date_of_birth", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cpf", "email"], name: "index_participants_on_cpf_and_email", unique: true
+    t.index ["cpf"], name: "index_participants_on_cpf", unique: true
+    t.index ["email"], name: "index_participants_on_email", unique: true
   end
 
 end

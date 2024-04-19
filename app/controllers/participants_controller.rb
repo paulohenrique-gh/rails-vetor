@@ -1,15 +1,13 @@
 class ParticipantsController < ApplicationController
-  def show
-    
-  end
+  def show; end
 
   def new
-    @participant = Participant.new 
+    @participant = Participant.new
   end
 
   def create
     @participant = Participant.new(participant_params)
-    @participant.save 
+    @participant.save
 
     redirect_to @participant, notice: t('.success')
   end
