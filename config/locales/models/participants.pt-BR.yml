@@ -11,6 +11,7 @@ pt-BR:
         email: E-mail
         date_of_birth: Data de nascimento
   participants:
-    success: Avaliado cadastrado com sucesso
+    success: Avaliado cadastrado com sucesso!
+    failure: Não foi possível cadastrar avaliado.
   save: Salvar
-  already_exists: já está em uso
+  invalid_cpf: inválido

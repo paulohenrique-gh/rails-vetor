@@ -13,9 +13,9 @@
 
   <body>
     <%= render 'layouts/navbar' %>
-    <%= render 'layouts/flash_messages' %>
     
     <main class="container d-flex flex-column align-items-center">
+      <%= render 'layouts/flash_messages' %>
       <%= yield %>
     </main>
 

@@ -8,6 +8,6 @@ class Participant < ApplicationRecord
   private
 
   def validate_cpf
-    errors.add(:cpf, I18n.t(:already_exists)) unless cpf.blank? || CPF.valid?(cpf)
+    errors.add(:cpf, I18n.t(:invalid_cpf)) unless cpf.blank? || CPF.valid?(cpf)
   end
 end
