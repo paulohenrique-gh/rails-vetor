@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_19_220136) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_19_224237) do
   create_table "instruments", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "participant_instruments", force: :cascade do |t|
+    t.integer "participant_id", null: false
+    t.integer "instrument_id", null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["instrument_id"], name: "index_participant_instruments_on_instrument_id"
+    t.index ["participant_id"], name: "index_participant_instruments_on_participant_id"
   end
 
   create_table "participants", force: :cascade do |t|
@@ -29,4 +39,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_220136) do
     t.index ["email"], name: "index_participants_on_email", unique: true
   end
 
+  add_foreign_key "participant_instruments", "instruments"
+  add_foreign_key "participant_instruments", "participants"
 end

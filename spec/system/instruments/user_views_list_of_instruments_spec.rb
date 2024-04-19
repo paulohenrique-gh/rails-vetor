@@ -10,9 +10,9 @@ describe 'User views list of available instruments' do
     create(:instrument, name: 'Teste de Autoestima',
                         description: 'Avalia autoestima do avaliado')
 
-    visit new_participant_instrument_path(participant)
+    visit new_participant_participant_instrument_path(participant)
     
     expected_options = ['Teste de Depressão', 'Teste de Ansiedade', 'Teste de Autoestima']
-    expect(page).to have_select('instrument_select', with_options: expected_options)
+    expect(page).to have_select('instrument_id', with_options: expected_options)
   end
 end

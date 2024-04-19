@@ -1,0 +1,9 @@
+<%= params %>
+<%= @participant.name %>
+<%= @options %>
+
+<%= form_with(model: [@participant, @participant_instrument]) do |f| %>
+  <%= f.label :instrument %>
+  <%= collection_select :instrument, :id, @options, :id, :name %>
+<% end %>
+
