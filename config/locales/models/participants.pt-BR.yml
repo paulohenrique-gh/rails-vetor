@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      participant:
+        one: Avaliado
+        other: Avaliados
+    attributes:
+      participant:
+        name: Nome
+        cpf: CPF
+        email: E-mail
+        date_of_birth: Data de nascimento
+  participants:
+    success: Avaliado cadastrado com sucesso!
+    failure: Não foi possível cadastrar avaliado.
+  save: Salvar
+  invalid_cpf: inválido
