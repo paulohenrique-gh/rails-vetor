@@ -8,9 +8,7 @@ class ParticipantsController < ApplicationController
   def create
     @participant = Participant.new(participant_params)
 
-    if @participant.save
-     return redirect_to @participant, notice: t('.success')
-    end
+    return redirect_to @participant, notice: t('.success') if @participant.save
 
     flash[:alert] = "#{t('.failure')} #{@participant.errors.full_messages.to_sentence}"
     render :new, status: :unprocessable_entity

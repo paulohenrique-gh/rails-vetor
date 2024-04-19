@@ -48,7 +48,7 @@ RSpec.describe Participant, type: :model do
 
     it 'returns false when cpf is invalid' do
       participant = build(:participant, cpf: '111222333444555')
-    
+
       expect(participant.valid?).to be false
       expect(participant.errors).to include :cpf
     end
