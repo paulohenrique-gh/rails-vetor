@@ -2,9 +2,15 @@ pt-BR:
   activerecord:
     attributes:
       participant_instrument:
+        instrument: Instrumento
         instrument_id: Instrumento
-        participant_id: Participante
+        participant: Avaliado 
+        participant_id: Avaliado
       participant_instrument/status:
         pending: Pendente
         finished: Finalizado
+  participant_instruments:
+    success: Instrumento aplicado com sucesso!
+    failure: Não foi possível aplicar instrumento.
   assign: Aplicar
+  select_prompt: Selecione um instrumento

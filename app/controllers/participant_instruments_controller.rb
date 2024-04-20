@@ -10,6 +10,6 @@ class ParticipantInstrumentsController < ApplicationController
     instrument = Instrument.find(params[:participant_instrument][:instrument_id])
     participant_instrument = ParticipantInstrument.new(participant:, instrument:)
 
-    redirect_to participant, notice: 'Instrumento aplicado com sucesso!' if participant_instrument.save
+    redirect_to participant, notice: t('.success') if participant_instrument.save
   end
 end

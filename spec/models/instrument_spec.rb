@@ -15,5 +15,13 @@ RSpec.describe Instrument, type: :model do
       expect(instrument.valid?).to be false
       expect(instrument.errors).to include :description
     end
+
+    it 'returns true when all fields are valid' do
+      instrument = build(:instrument, name: 'Teste de Ansiedade Geral',
+                                      description: 'Avalia possível quadro de ansiedade')
+
+      expect(instrument.valid?).to be true
+      expect(instrument.errors).to be_empty
+    end
   end
 end
