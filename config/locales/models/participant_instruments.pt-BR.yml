@@ -4,4 +4,7 @@ pt-BR:
       participant_instrument:
         instrument_id: Instrumento
         participant_id: Participante
+      participant_instrument/status:
+        pending: Pendente
+        finished: Finalizado
   assign: Aplicar

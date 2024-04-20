@@ -6,7 +6,7 @@
   <% @participant.participant_instruments.each do |part_inst| %>
     <tr>
       <td><%= part_inst.instrument.name %></td>
-      <td><%= part_inst.status %></td>
+      <td><%= ParticipantInstrument.human_attribute_name("status.#{part_inst.status}") %></td>
     </tr>
   <% end %>
 </table>
