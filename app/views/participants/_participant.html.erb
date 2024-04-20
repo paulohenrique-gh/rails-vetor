@@ -1,0 +1,22 @@
+<section class="container w-50 card p-3 mb-5">
+  <div class="row mb-3 justify-content-around">
+    <div class="col">
+      <div class="text-muted"><%= Participant.model_name.human %></div>
+      <div class="fs-5"><%= participant.name %></div>
+    </div>
+    <div class="col text-end">
+      <div class="text-muted"><%= Participant.human_attribute_name(:cpf) %></div>
+      <div class="fs-5"><%= participant.cpf %></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="text-muted"><%= Participant.human_attribute_name(:email) %></div>
+      <div class="fs-5"><%= participant.email %></div>
+    </div>
+    <div class="col text-end">
+      <div class="text-muted"><%= Participant.human_attribute_name(:date_of_birth) %></div>
+      <div class="fs-5"><%= l(participant.date_of_birth) %></div>
+    </div>
+  </div>
+</section>

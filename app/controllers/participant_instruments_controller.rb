@@ -15,7 +15,7 @@ class ParticipantInstrumentsController < ApplicationController
     participant_instrument = ParticipantInstrument.new(participant:, instrument:)
 
     participant_instrument.save
-    ParticipantInstrumentMailer.with(participant_instrument:).notify_participant.deliver_later
+    ParticipantInstrumentMailer.with(participant_instrument:).notify_participant.deliver_now
 
     redirect_to participant, notice: t('.success')
   end
