@@ -1,5 +1,6 @@
 class Participant < ApplicationRecord
   has_many :participant_instruments, dependent: :destroy
+  has_many :instruments, through: :participant_instruments
 
   validates :name, :cpf, :email, :date_of_birth, presence: true
   validates :cpf, :email, uniqueness: true

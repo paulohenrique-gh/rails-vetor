@@ -3,7 +3,9 @@
 <%= @options %>
 
 <%= form_with(model: [@participant, @participant_instrument]) do |f| %>
-  <%= f.label :instrument %>
-  <%= collection_select :instrument, :id, @options, :id, :name %>
+  <%= f.label :instrument_id %>
+  <%= collection_select :participant_instrument, :instrument_id, @options, :id, :name %>
+
+  <%= f.submit t(:assign) %>
 <% end %>
 
