@@ -2,6 +2,10 @@ pt-BR:
   activerecord:
     attributes:
       participant_instrument:
+        status: Status
+        score: Pontuação
+        created_at: Data de aplicação 
+        finished_at: Data de finalização
         instrument: Instrumento
         instrument_id: Instrumento
         participant: Avaliado 

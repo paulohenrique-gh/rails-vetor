@@ -8,7 +8,8 @@ describe 'User assigns instrument to participant' do
     create(:instrument, name: 'Teste de Ansiedade',
                         description: 'Avalia possibilidade de quadro ansioso')
 
-    visit new_participant_participant_instrument_path(participant)
+    visit participant_path(participant)
+    click_on 'Aplicar novo instrumento'
     select 'Teste de Ansiedade', from: 'Instrumento'
     click_on 'Aplicar'
 
