@@ -1,58 +1,8 @@
-<section class="container w-50 card p-3 mb-5">
-  <div class="row mb-3 justify-content-around">
-    <div class="col">
-      <div class="text-muted"><%= Participant.model_name.human %></div>
-      <div class="fs-5"><%= @participant.name %></div>
-    </div>
-    <div class="col text-end">
-      <div class="text-muted"><%= Participant.human_attribute_name(:cpf) %></div>
-      <div class="fs-5"><%= @participant.cpf %></div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <div class="text-muted"><%= Participant.human_attribute_name(:email) %></div>
-      <div class="fs-5"><%= @participant.email %></div>
-    </div>
-    <div class="col text-end">
-      <div class="text-muted"><%= Participant.human_attribute_name(:date_of_birth) %></div>
-      <div class="fs-5"><%= l(@participant.date_of_birth) %></div>
-    </div>
-  </div>
-</section>
+<%= render @participant %>
 
-<%= link_to 'Aplicar novo instrumento',
+<%= link_to t(:assign_new),
             new_participant_participant_instrument_path(@participant),
             class: 'btn btn-primary mb-5' %>
 
-<h1 class="fs-3 mb-3"><%= t(:assigned_instruments) %></h1>
-<table class="table table-striped">
-  <tr>
-    <th><%= Instrument.human_attribute_name(:name) %></th>
-    <th><%= Instrument.human_attribute_name(:description) %></th>
-    <th class="text-end">
-      <%= ParticipantInstrument.human_attribute_name(:status) %>
-    </th>
-    <th class="text-end">
-      <%= ParticipantInstrument.human_attribute_name(:created_at) %>
-    </th>
-    <th class="text-end">
-      <%= ParticipantInstrument.human_attribute_name(:finished_at) %>
-    </th>
-    <th class="text-end">
-      <%= ParticipantInstrument.human_attribute_name(:score) %>
-    </th>
-  </tr>
-
-  <% @participant.participant_instruments.each do |part_inst| %>
-    <tr>
-      <td><%= part_inst.instrument.name %></td>
-      <td><%= part_inst.instrument.description %></td>
-      <td class="text-end"><%= ParticipantInstrument.human_attribute_name("status.#{part_inst.status}") %></td>
-      <td class="text-end"><%= l(part_inst.created_at.to_date) %></td>
-      <%# TODO: create another field for date of conclusion %>
-      <td class="text-end"><%= l(part_inst.updated_at.to_date) if part_inst.finished? %>TODO</td>
-      <td class="text-end"><%# TODO: add score here after implementing it %>TODO</td>
-    </tr>
-  <% end %>
-</table>
+<%= render partial: 'participant_instruments_table',
+           locals: { participant_instruments: @participant.participant_instruments } %>

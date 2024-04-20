@@ -19,5 +19,7 @@ describe 'User assigns instrument to participant' do
       expect(page).to have_content 'Teste de Ansiedade'
       expect(page).to have_content 'Pendente'
     end
+    email = ActionMailer::Base.deliveries.find { |mail| mail.to.include?(participant.email) }
+    expect(email.to).to include participant.email
   end
 end

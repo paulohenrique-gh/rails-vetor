@@ -1,4 +1,8 @@
 class ParticipantInstrumentsController < ApplicationController
+  def show
+    @participant_instrument = ParticipantInstrument.find(params[:participant_instrument_id])
+  end
+
   def new
     @participant = Participant.find(params[:participant_id])
     @participant_instrument = @participant.participant_instruments.build
@@ -10,6 +14,9 @@ class ParticipantInstrumentsController < ApplicationController
     instrument = Instrument.find(params[:participant_instrument][:instrument_id])
     participant_instrument = ParticipantInstrument.new(participant:, instrument:)
 
-    redirect_to participant, notice: t('.success') if participant_instrument.save
+    participant_instrument.save
+    ParticipantInstrumentMailer.with(participant_instrument:).notify_participant.deliver_now
+
+    redirect_to participant, notice: t('.success')
   end
 end

@@ -16,5 +16,6 @@ pt-BR:
   participant_instruments:
     success: Instrumento aplicado com sucesso!
     failure: Não foi possível aplicar instrumento.
+  assign_new: Aplicar novo instrumento
   assign: Aplicar
   select_prompt: Selecione um instrumento

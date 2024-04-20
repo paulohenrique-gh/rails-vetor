@@ -13,7 +13,7 @@ describe 'User views participant page' do
     participant.participant_instruments.create!(instrument: instrument_one, status: :pending,
                                                 created_at: '2022-01-29')
     participant.participant_instruments.create!(instrument: instrument_two, status: :finished,
-                                                created_at: '2021-03-14', updated_at: '2021-03-17')
+                                                created_at: '2021-03-14', finished_at: '2021-03-17')
 
     # TODO: visit root path after creating participants list on the home page
     visit participant_path(participant)
