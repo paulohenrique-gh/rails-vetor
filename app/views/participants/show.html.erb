@@ -1,12 +1,42 @@
+<section>
+  <p>
+    <div><%= Participant.model_name.human %></div>
+      <%= @participant.name %>
+  </p>
+  <p>
+    <div><%= Participant.human_attribute_name(:cpf) %></div>
+      <%= @participant.cpf %>
+  </p>
+  <p>
+    <div><%= Participant.human_attribute_name(:email) %></div>
+      <%= @participant.email %>
+  </p>
+  <p>
+    <div><%= Participant.human_attribute_name(:date_of_birth) %></div>
+      <%= l(@participant.date_of_birth) %>
+  </p>
+</section>
+
+<%= link_to 'Aplicar novo instrumento', new_participant_participant_instrument_path(@participant) %>
+
 <table>
   <tr>
     <th>Nome</th>
+    <th>Descrição</th>
     <th>Status</th>
+    <th>Data de aplicação</th>
+    <th>Data de finalização</th>
+    <th>Pontuação</th>
   </tr>
   <% @participant.participant_instruments.each do |part_inst| %>
     <tr>
       <td><%= part_inst.instrument.name %></td>
+      <td><%= part_inst.instrument.description %></td>
       <td><%= ParticipantInstrument.human_attribute_name("status.#{part_inst.status}") %></td>
+      <td><%= l(part_inst.created_at.to_date) %></td>
+      <%# TODO: create another field for date of conclusion %>
+      <td><%= l(part_inst.updated_at.to_date) if part_inst.finished? %></td>
+      <td><%# TODO: add score here after implementing it %></td>
     </tr>
   <% end %>
 </table>
