@@ -1,6 +1,10 @@
 <%= render partial: 'participants/participant',
            locals: { participant: @participant_instrument.participant } %>
 
+<% @participant_instrument.questions.each do |q| %>
+  <div><%= q.description %></div>
+<% end %>
+
 <form>
   <input type="radio" id="option1" name="question1" value="option1">
   <label for="html">Option 1</label>
