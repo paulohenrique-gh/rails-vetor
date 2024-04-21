@@ -16,6 +16,11 @@ pt-BR:
   participant_instruments:
     success: Instrumento aplicado com sucesso!
     failure: Não foi possível aplicar instrumento.
+    participant_not_validated: Dados não validados
+    incorrect_data: Dados incorretos
   assign_new: Aplicar novo instrumento
   assign: Aplicar
+  confirm: Confirmar
   select_prompt: Selecione um instrumento
+  mail_subject: Vetor - Novo Questionário
+
