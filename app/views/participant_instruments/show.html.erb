@@ -1,37 +1,17 @@
 <%= render partial: 'participants/participant',
            locals: { participant: @participant_instrument.participant } %>
 
-<% @participant_instrument.questions.each do |q| %>
-  <div><%= q.description %></div>
+<%= form_with(url: root_path, method: :get) do |f| %>
+  <% @participant_instrument.questions.each_with_index do |q, i| %>
+    <strong><%= q.description %></strong>
+    <br>
+    <% q.options.each do |o| %>
+      <%= f.radio_button "responses[#{i}][option_id]", o.id %>
+      <%= f.label "responses[#{i}][option_id]", o.description %>
+      <br>
+    <% end %>
+    <br>
+  <% end %>
+  <%= f.submit %>
 <% end %>
-
-<form>
-  <input type="radio" id="option1" name="question1" value="option1">
-  <label for="html">Option 1</label>
-  <br>
-  <input type="radio" id="option2" name="question1" value="option2">
-  <label for="html">Option 2</label>
-
-  <br>
-  <br>
-
-  <input type="radio" id="option1" name="question2" value="option1">
-  <label for="html">Option 1</label>
-  <br>
-  <input type="radio" id="option2" name="question2" value="option2">
-  <label for="html">Option 2</label>
-
-  <br>
-  <br>
-
-  <input type="radio" id="option1" name="question3" value="option1">
-  <label for="html">Option 1</label>
-  <br>
-  <input type="radio" id="option2" name="question3" value="option2">
-  <label for="html">Option 2</label>
-
-  <br>
-  <br>
-  <input type="submit">
-</form>
 

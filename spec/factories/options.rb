@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :option do
-    description { "MyText" }
+    sequence(:description) { |n| "Option #{n}" }
     weight { 1 }
-    question { nil }
+    question
   end
 end

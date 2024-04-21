@@ -4,7 +4,7 @@ RSpec.describe ParticipantInstrument, type: :model do
   context '#valid' do
     it 'returns false with no associated participant' do
       instrument = create(:instrument)
-      participant_instrument = build(:participant_instrument, instrument:)
+      participant_instrument = build(:participant_instrument, instrument:, participant: nil)
 
       expect(participant_instrument.valid?).to be false
       expect(participant_instrument.errors).to include :participant
@@ -12,7 +12,7 @@ RSpec.describe ParticipantInstrument, type: :model do
 
     it 'returns false with no associated instrument' do
       participant = create(:participant)
-      participant_instrument = build(:participant_instrument, participant:)
+      participant_instrument = build(:participant_instrument, participant:, instrument: nil)
 
       expect(participant_instrument.valid?).to be false
       expect(participant_instrument.errors).to include :instrument

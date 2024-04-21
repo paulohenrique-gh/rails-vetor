@@ -21,10 +21,7 @@ RSpec.describe Question, type: :model do
     end
 
     it 'returns true when all fields are valid' do
-      participant = create(:participant)
-      instrument = create(:instrument)
-      participant_instrument = participant.participant_instruments.create!(instrument:)
-      question_set = participant_instrument.create_question_set
+      question_set = create(:question_set)
       question = build(:question, description: 'Descrição da questão', question_set:)
 
       expect(question.valid?).to be true
