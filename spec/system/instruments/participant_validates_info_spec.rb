@@ -13,7 +13,7 @@ describe 'Participant accesses instrument link' do
     fill_in 'CPF', with: '176.814.070-73'
     fill_in 'E-mail', with: 'carlos@email.com'
     fill_in 'Data de nascimento', with: '06/12/1987'
-    click_on 'Confirmar'
+    click_on 'Próximo'
 
     expect(current_path).to eq participant_instrument_path(participant_instrument)
   end
@@ -30,7 +30,7 @@ describe 'Participant accesses instrument link' do
     fill_in 'CPF', with: '182.809.073-97'
     fill_in 'E-mail', with: 'vitor@email.com'
     fill_in 'Data de nascimento', with: '10/07/1992'
-    click_on 'Confirmar'
+    click_on 'Próximo'
 
     expect(page).to have_content 'Dados incorretos'
     expect(current_path).not_to eq participant_instrument_path(participant_instrument)

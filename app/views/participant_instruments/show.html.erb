@@ -1,3 +1,33 @@
-<%= @participant_instrument.participant.name %>
-Placeholder
-<%# TODO: fill the page with questions from the instrument %>
+<%= render partial: 'participants/participant',
+           locals: { participant: @participant_instrument.participant } %>
+
+<form>
+  <input type="radio" id="option1" name="question1" value="option1">
+  <label for="html">Option 1</label>
+  <br>
+  <input type="radio" id="option2" name="question1" value="option2">
+  <label for="html">Option 2</label>
+
+  <br>
+  <br>
+
+  <input type="radio" id="option1" name="question2" value="option1">
+  <label for="html">Option 1</label>
+  <br>
+  <input type="radio" id="option2" name="question2" value="option2">
+  <label for="html">Option 2</label>
+
+  <br>
+  <br>
+
+  <input type="radio" id="option1" name="question3" value="option1">
+  <label for="html">Option 1</label>
+  <br>
+  <input type="radio" id="option2" name="question3" value="option2">
+  <label for="html">Option 2</label>
+
+  <br>
+  <br>
+  <input type="submit">
+</form>
+

@@ -1,6 +1,6 @@
 class ParticipantInstrumentsController < ApplicationController
   def show
-    unless session[:participant_validated]
+    unless participant_validated?
       return redirect_to participant_instrument_validation_path(params[:id]),
                          alert: t('.participant_not_validated')
     end
@@ -49,5 +49,9 @@ class ParticipantInstrumentsController < ApplicationController
 
   def store_validation
     session[:participant_validated] = true
+  end
+
+  def participant_validated?
+    session[:participant_validated]
   end
 end
