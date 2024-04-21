@@ -2,7 +2,7 @@ class ParticipantInstrumentsController < ApplicationController
   def show
     unless session[:participant_validated]
       return redirect_to participant_instrument_validation_path(params[:id]),
-             alert: t('.participant_not_validated')
+                         alert: t('.participant_not_validated')
     end
 
     @participant_instrument = ParticipantInstrument.find(params[:id])
@@ -25,20 +25,29 @@ class ParticipantInstrumentsController < ApplicationController
     redirect_to participant, notice: t('.success')
   end
 
-  def validation    
+  def validation
     @participant = Participant.new
   end
 
   def validate_participant
-    submitted_data = params.require(:participant).permit(:name, :cpf, :email, :date_of_birth)
     participant = ParticipantInstrument.find(params[:participant_instrument_id]).participant
 
-    if participant.valid_data?(submitted_data)
-      session[:participant_validated] = true
+    if participant.valid_data?(submitted_participant_data)
+      store_validation
       return redirect_to participant_instrument_path(params[:participant_instrument_id])
     end
 
     flash.now[:alert] = t('.incorrect_data')
     render :validation, status: :unauthorized
+  end
+
+  private
+
+  def submitted_participant_data
+    params.require(:participant).permit(:name, :cpf, :email, :date_of_birth)
+  end
+
+  def store_validation
+    session[:participant_validated] = true
   end
 end

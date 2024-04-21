@@ -11,15 +11,31 @@ class Participant < ApplicationRecord
   def valid_data?(data)
     symbolized_data = data.to_h.symbolize_keys
 
-    name.downcase == symbolized_data[:name].downcase &&
-    cpf.gsub(/[^\d]/, '') == symbolized_data[:cpf].gsub(/[^\d]/, '') &&
-    email.downcase == symbolized_data[:email].downcase &&
-    date_of_birth.to_date == symbolized_data[:date_of_birth].to_date
+    same_name?(symbolized_data[:name]) &&
+      same_cpf?(symbolized_data[:cpf]) &&
+      same_email?(symbolized_data[:email]) &&
+      same_date_of_birth?(symbolized_data[:date_of_birth])
   end
 
   private
 
   def validate_cpf
     errors.add(:cpf, I18n.t(:invalid_cpf)) unless cpf.blank? || CPF.valid?(cpf)
+  end
+
+  def same_name?(name_to_compare)
+    name.downcase == name_to_compare.downcase
+  end
+
+  def same_cpf?(cpf_to_compare)
+    cpf.gsub(/[^\d]/, '') == cpf_to_compare.gsub(/[^\d]/, '')
+  end
+
+  def same_email?(email_to_compare)
+    email.downcase == email_to_compare.downcase
+  end
+
+  def same_date_of_birth?(date_of_birth_to_compare)
+    date_of_birth.to_date == date_of_birth_to_compare.to_date
   end
 end
