@@ -68,4 +68,28 @@ RSpec.describe Participant, type: :model do
       expect(participant.errors).to be_empty
     end
   end
+
+  context '#valid_data?' do
+    it 'returns false when data submitted is invalid' do
+      invalid_data = { name: 'Carlos Barbosa', cpf: '00099988877',
+                       email: 'carlos@email.com', date_of_birth: '20/11/1989' }
+      participant = build(:participant, name: 'Luiz Daniel', cpf: '59551881001',
+                                        email: 'luiz@email.com', date_of_birth: '14/04/2001')
+
+      result = participant.valid_data?(invalid_data)
+
+      expect(result).to be false
+    end
+
+    it 'returns true when data is the valid' do
+      valid_data = { name: 'LUIZ DANIEL', cpf: '595.518.810-01',
+                     email: 'luiz@email.com', date_of_birth: '14/04/2001' }
+      participant = build(:participant, name: 'Luiz Daniel', cpf: '59551881001',
+                                        email: 'luiz@email.com', date_of_birth: '14/04/2001')
+
+      result = participant.valid_data?(valid_data)
+
+      expect(result).to be true
+    end
+  end
 end

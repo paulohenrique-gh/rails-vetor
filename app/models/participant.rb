@@ -8,6 +8,15 @@ class Participant < ApplicationRecord
 
   validate :validate_cpf
 
+  def valid_data?(data)
+    symbolized_data = data.to_h.symbolize_keys
+
+    name.downcase == symbolized_data[:name].downcase &&
+    cpf.gsub(/[^\d]/, '') == symbolized_data[:cpf].gsub(/[^\d]/, '') &&
+    email.downcase == symbolized_data[:email].downcase &&
+    date_of_birth.to_date == symbolized_data[:date_of_birth].to_date
+  end
+
   private
 
   def validate_cpf
