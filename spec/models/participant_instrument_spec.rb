@@ -44,6 +44,8 @@ RSpec.describe ParticipantInstrument, type: :model do
 
       expect(participant_instrument.status).to eq 'pending'
     end
+
+    pending 'updates finished_at attribute with current time'
   end
 
   context '#compute_score' do

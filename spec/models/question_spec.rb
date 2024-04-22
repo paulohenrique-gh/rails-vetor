@@ -30,7 +30,7 @@ RSpec.describe Question, type: :model do
   context '.options' do
     it 'returns options sorted by weight in descending order' do
       question = create(:question)
-      
+
       create(:option, weight: 1, question:)
       create(:option, weight: 2, question:)
       create(:option, weight: 0, question:)
@@ -40,5 +40,15 @@ RSpec.describe Question, type: :model do
 
       expect(question.options).to eq expected_result
     end
+  end
+
+  it 'number of options cannot exceed 4' do
+    question = create(:question)
+
+    4.times { create(:option, question:) }
+
+    expect { question.options.create!(description: 'Questão 5', weight: 3) }
+      .to raise_error Question::OptionsLimitExceeded
+    expect(question.options.count).to eq 4
   end
 end
