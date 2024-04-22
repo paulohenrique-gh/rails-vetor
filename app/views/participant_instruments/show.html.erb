@@ -1,6 +1,7 @@
 <%= render partial: 'participants/participant',
            locals: { participant: @participant_instrument.participant } %>
 
+<%# TODO: add styles %>
 <%= form_with(url: participant_instrument_submit_path(@participant_instrument.id),
               method: :post) do |f| %>
   <% @participant_instrument.questions.each_with_index do |q, i| %>

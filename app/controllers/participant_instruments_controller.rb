@@ -41,6 +41,8 @@ class ParticipantInstrumentsController < ApplicationController
     render :validation, status: :unauthorized
   end
 
+  def completion; end
+
   private
 
   def submitted_participant_data

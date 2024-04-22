@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     resources :participant_instruments, only: %i[show new create] do
       get 'validation', to: 'participant_instruments#validation'
       post 'validate_participant', to: 'participant_instruments#validate_participant'
-      post 'submit', to: 'responses#create'
+      post 'submit', to: 'answers#create'
     end
   end
+
+  get 'instrument_completion', to: 'participant_instruments#completion'
 end

@@ -45,9 +45,9 @@ describe 'Participant accesses instrument questions page' do
     allow_any_instance_of(ParticipantInstrumentsController)
       .to receive(:participant_validated?)
       .and_return(true)
-    
+
     visit participant_instrument_path(question_set.participant_instrument)
- 
+
     within '#question1' do
       find(:label, 'Opção 2 da questão 1').click
     end
@@ -72,6 +72,38 @@ describe 'Participant accesses instrument questions page' do
 
     expect(page).to have_content 'Respostas salvas com sucesso!'
     expect(page).to have_content 'Obrigado por responder ao questionário.'
-    expect(Response.count).to eq 5
+    expect(Answer.count).to eq 5
   end
+
+  it 'and submits form without answering all questions' do
+    question_set = create(:question_set)
+
+    5.times do |qtn|
+      question = create(:question, description: "Questão #{qtn + 1}", question_set:)
+      4.times do |opt|
+        create(:option, description: "Opção #{opt + 1} da questão #{qtn + 1}", question:)
+      end
+    end
+
+    allow_any_instance_of(ParticipantInstrumentsController)
+      .to receive(:participant_validated?)
+      .and_return(true)
+
+    visit participant_instrument_path(question_set.participant_instrument)
+
+    within '#question2' do
+      find(:label, 'Opção 4 da questão 2').click
+    end
+
+    within '#question3' do
+      find(:label, 'Opção 1 da questão 3').click
+    end
+
+    click_on 'Salvar'
+
+    expect(page).to have_content 'É necessário selecionar uma opção para cada pergunta'
+    expect(Answer.count).to eq 0
+  end
+
+  pending 'and it was already submitted'
 end

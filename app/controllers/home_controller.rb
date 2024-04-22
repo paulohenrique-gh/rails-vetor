@@ -1,5 +1,3 @@
 class HomeController < ApplicationController
-  def index
-    puts "#{params}"
-  end
+  def index; end
 end
