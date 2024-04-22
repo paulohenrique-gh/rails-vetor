@@ -26,3 +26,6 @@ Metrics/BlockLength:
   AllowedMethods: ['describe', 'context', 'feature', 'scenario', 'let', 'it']
   Exclude:
     - 'spec/factories/**/*'
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false

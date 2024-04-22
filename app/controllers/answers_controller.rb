@@ -1,11 +1,11 @@
 class AnswersController < ApplicationController
-  QUESTION_INDEXES = ['0', '1', '2', '3', '4'].freeze
+  QUESTION_INDEXES = %w[0 1 2 3 4].freeze
 
   def create
     @participant_instrument = ParticipantInstrument.find(params[:participant_instrument_id])
 
     if missing_answers?
-      flash[:alert] = 'É necessário selecionar uma opção para cada pergunta'
+      flash[:alert] = t('.missing_answers')
       return render 'instruments/load_questionnaire', status: :bad_request
     end
 

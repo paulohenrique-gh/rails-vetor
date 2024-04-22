@@ -1,11 +1,12 @@
 class Question < ApplicationRecord
   class OptionsLimitExceeded < ActiveRecord::ActiveRecordError; end
-  
+
   MAX_OPTIONS = 4
 
   belongs_to :instrument
 
-  has_many :options, -> { order(weight: :desc) }, dependent: :destroy, before_add: :check_options_limit
+  has_many :options, -> { order(weight: :desc) }, dependent: :destroy,
+                                                  inverse_of: :question, before_add: :check_options_limit
 
   validates :description, presence: true
 

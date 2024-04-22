@@ -39,7 +39,7 @@ RSpec.describe Option, type: :model do
 
     it 'returns false when associated question has option with the same weight' do
       question = create(:question)
-      option = create(:option, question:, weight: 2)
+      create(:option, question:, weight: 2)
       new_option = build(:option, question:, weight: 2)
 
       expect(new_option.valid?).to eq false

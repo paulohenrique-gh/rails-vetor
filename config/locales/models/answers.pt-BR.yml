@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      answer:
+        one: Resposta
+        other: Respostas
+  answers:
+    missing_answers: É necessário selecionar uma opção para cada pergunta
+

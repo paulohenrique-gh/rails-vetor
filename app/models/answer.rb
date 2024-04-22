@@ -5,7 +5,7 @@ class Answer < ApplicationRecord
   delegate :weight, to: :option
 
   def self.save_answers(answers:, participant_instrument:)
-    answers.each do |_, answer|
+    answers.each_value do |answer|
       option = Option.find(answer[:option_id])
       create!(option:, participant_instrument:)
     end

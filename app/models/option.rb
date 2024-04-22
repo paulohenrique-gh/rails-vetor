@@ -3,8 +3,8 @@ class Option < ApplicationRecord
 
   belongs_to :question
 
-  has_many :answers
+  has_many :answers, dependent: :destroy
 
   validates :description, :weight, presence: true
-  validates :weight, numericality: { in: WEIGHT_RANGE }, uniqueness: { scope: :question_id }
+  validates :weight, numericality: { in: WEIGHT_RANGE }, uniqueness: { scope: :question }
 end
