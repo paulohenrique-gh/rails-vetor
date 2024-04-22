@@ -10,12 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_20_150130) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_22_224112) do
+  create_table "answers", force: :cascade do |t|
+    t.integer "participant_instrument_id", null: false
+    t.integer "option_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_id"], name: "index_answers_on_option_id"
+    t.index ["participant_instrument_id"], name: "index_answers_on_participant_instrument_id"
+  end
+
   create_table "instruments", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.text "description", null: false
+    t.integer "weight", null: false
+    t.integer "question_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_options_on_question_id"
+    t.index ["weight", "question_id"], name: "index_options_on_weight_and_question_id", unique: true
   end
 
   create_table "participant_instruments", force: :cascade do |t|
@@ -41,6 +60,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_20_150130) do
     t.index ["email"], name: "index_participants_on_email", unique: true
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "instrument_id", null: false
+    t.index ["instrument_id"], name: "index_questions_on_instrument_id"
+  end
+
+  add_foreign_key "answers", "options"
+  add_foreign_key "answers", "participant_instruments"
+  add_foreign_key "options", "questions"
   add_foreign_key "participant_instruments", "instruments"
   add_foreign_key "participant_instruments", "participants"
+  add_foreign_key "questions", "instruments"
 end

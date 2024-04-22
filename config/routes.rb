@@ -3,14 +3,13 @@ Rails.application.routes.draw do
 
   resources :participants, only: %i[show new create], shallow: true do
     resources :participant_instruments, only: %i[show new create] do
-      get 'validation', to: 'participant_instruments#validation'
-      post 'validate_participant', to: 'participant_instruments#validate_participant'
+      get 'validation', to: 'participants#validation'
+      post 'validate_participant', to: 'participants#validate_participant'
+      post 'submit', to: 'answers#create'
+      
+      get 'questionnaire', to: 'instruments#load_questionnaire'
     end
   end
 
-  # get 'participant_instruments/:participant_instrument_id', to: 'participant_instruments#show',
-  #                                                           as: :participant_instruments do
-  #   get 'validate_participant',
-  #       to: 'participant_instruments#validate_participant'
-  # end
+  get 'instrument_completion', to: 'instruments#completion'
 end
