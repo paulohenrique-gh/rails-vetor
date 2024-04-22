@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_21_193247) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_22_011318) do
+  create_table "answers", force: :cascade do |t|
+    t.integer "participant_instrument_id", null: false
+    t.integer "option_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_id"], name: "index_answers_on_option_id"
+    t.index ["participant_instrument_id"], name: "index_answers_on_participant_instrument_id"
+  end
+
   create_table "instruments", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
@@ -65,6 +74,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_193247) do
     t.index ["question_set_id"], name: "index_questions_on_question_set_id"
   end
 
+  add_foreign_key "answers", "options"
+  add_foreign_key "answers", "participant_instruments"
   add_foreign_key "options", "questions"
   add_foreign_key "participant_instruments", "instruments"
   add_foreign_key "participant_instruments", "participants"
