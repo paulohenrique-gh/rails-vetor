@@ -26,4 +26,19 @@ RSpec.describe Question, type: :model do
       expect(question.errors).to be_empty
     end
   end
+
+  context '.options' do
+    it 'returns options sorted by weight in descending order' do
+      question = create(:question)
+      
+      create(:option, weight: 1, question:)
+      create(:option, weight: 2, question:)
+      create(:option, weight: 0, question:)
+      create(:option, weight: 3, question:)
+
+      expected_result = question.options.order(weight: :desc)
+
+      expect(question.options).to eq expected_result
+    end
+  end
 end
