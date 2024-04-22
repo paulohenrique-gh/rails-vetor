@@ -1,17 +1,20 @@
 <%= render partial: 'participants/participant',
            locals: { participant: @participant_instrument.participant } %>
 
-<%= form_with(url: root_path, method: :get) do |f| %>
+<%= form_with(url: participant_instrument_submit_path(@participant_instrument.id),
+              method: :post) do |f| %>
   <% @participant_instrument.questions.each_with_index do |q, i| %>
-    <strong><%= q.description %></strong>
-    <br>
-    <% q.options.each do |o| %>
-      <%= f.radio_button "responses[#{i}][option_id]", o.id %>
-      <%= f.label "responses[#{i}][option_id]", o.description %>
+    <div id="question<%= i + 1 %>">
+      <strong><%= q.description %></strong>
       <br>
-    <% end %>
-    <br>
+      <% q.options.each do |o| %>
+        <%= f.radio_button "responses[#{i}][option_id]", o.id %>
+        <%= f.label "responses[#{i}][option_id]_#{o.id}", o.description %>
+        <br>
+      <% end %>
+      <br>
+    </div>
   <% end %>
-  <%= f.submit %>
+  <%= f.submit 'Salvar' %>
 <% end %>
 
