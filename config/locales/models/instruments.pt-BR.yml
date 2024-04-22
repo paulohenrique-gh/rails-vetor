@@ -8,4 +8,6 @@ pt-BR:
       instrument:
         name: Nome
         description: Descrição
+  instruments:
+    participant_not_validated: Dados não validados
   assign: Aplicar

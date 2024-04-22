@@ -11,11 +11,11 @@ describe 'Participant accesses instrument questions page' do
       end
     end
 
-    allow_any_instance_of(ParticipantInstrumentsController)
+    allow_any_instance_of(InstrumentsController)
       .to receive(:participant_validated?)
       .and_return(true)
 
-    visit participant_instrument_path(question_set.participant_instrument)
+    visit participant_instrument_questionnaire_path(question_set.participant_instrument)
 
     5.times do |idx|
       within "#question#{idx + 1}" do
@@ -33,7 +33,8 @@ describe 'Participant accesses instrument questions page' do
   end
 
   it 'and answers all questions' do
-    question_set = create(:question_set)
+    participant_instrument = create(:participant_instrument)
+    question_set = create(:question_set, participant_instrument:)
 
     5.times do |qtn|
       question = create(:question, description: "Questão #{qtn + 1}", question_set:)
@@ -42,11 +43,11 @@ describe 'Participant accesses instrument questions page' do
       end
     end
 
-    allow_any_instance_of(ParticipantInstrumentsController)
+    allow_any_instance_of(InstrumentsController)
       .to receive(:participant_validated?)
       .and_return(true)
 
-    visit participant_instrument_path(question_set.participant_instrument)
+    visit participant_instrument_questionnaire_path(participant_instrument)
 
     within '#question1' do
       find(:label, 'Opção 2 da questão 1').click
@@ -73,6 +74,7 @@ describe 'Participant accesses instrument questions page' do
     expect(page).to have_content 'Respostas salvas com sucesso!'
     expect(page).to have_content 'Obrigado por responder ao questionário.'
     expect(Answer.count).to eq 5
+    expect(participant_instrument.reload.status).to eq 'finished'
   end
 
   it 'and submits form without answering all questions' do
@@ -85,11 +87,11 @@ describe 'Participant accesses instrument questions page' do
       end
     end
 
-    allow_any_instance_of(ParticipantInstrumentsController)
+    allow_any_instance_of(InstrumentsController)
       .to receive(:participant_validated?)
       .and_return(true)
 
-    visit participant_instrument_path(question_set.participant_instrument)
+    visit participant_instrument_questionnaire_path(question_set.participant_instrument)
 
     within '#question2' do
       find(:label, 'Opção 4 da questão 2').click
@@ -108,11 +110,11 @@ describe 'Participant accesses instrument questions page' do
   it 'and it was already submitted' do
     participant_instrument = create(:participant_instrument, status: :finished)
 
-    allow_any_instance_of(ParticipantInstrumentsController)
+    allow_any_instance_of(InstrumentsController)
       .to receive(:participant_validated?)
       .and_return(true)
 
-    visit participant_instrument_path(participant_instrument)
+    visit participant_instrument_questionnaire_path(participant_instrument)
 
     expect(page).to have_content 'Questionário já submetido'
   end

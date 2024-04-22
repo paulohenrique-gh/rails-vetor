@@ -13,6 +13,7 @@ pt-BR:
   participants:
     success: Avaliado cadastrado com sucesso!
     failure: Não foi possível cadastrar avaliado.
+    incorrect_data: Dados incorretos
   save: Salvar
   invalid_cpf: inválido
   assigned_instruments: Instrumentos aplicados

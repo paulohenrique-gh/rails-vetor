@@ -6,7 +6,7 @@ class AnswersController < ApplicationController
 
     if missing_answers?
       flash[:alert] = 'É necessário selecionar uma opção para cada pergunta'
-      return render 'participant_instruments/show', status: :bad_request
+      return render 'instruments/load_questionnaire', status: :bad_request
     end
 
     Answer.save_answers(answers: answers_params, participant_instrument: @participant_instrument)
