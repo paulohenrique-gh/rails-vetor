@@ -9,8 +9,8 @@ class AnswersController < ApplicationController
       return render 'participant_instruments/show', status: :bad_request
     end
 
-    @form_responses = params[:responses]
-    
+    instantiate_answers
+
     # TODO: compute score and save it to participant_instrument.score
     redirect_to instrument_completion_path
   end
@@ -22,9 +22,9 @@ class AnswersController < ApplicationController
   end
 
   def instantiate_answers
-    @form_responses.each do |_, value|
+    params[:responses].each do |_, value|
       option = Option.find(value[:option_id])
-      option.answers.create!(participant_instrument:)
+      @participant_instrument.answers.create!(option:)
     end
   end
 end

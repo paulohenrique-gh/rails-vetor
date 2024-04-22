@@ -1,5 +1,6 @@
 class ParticipantInstrumentsController < ApplicationController
   def show
+    # TODO: change this action to instrument#show
     unless participant_validated?
       return redirect_to participant_instrument_validation_path(params[:id]),
                          alert: t('.participant_not_validated')
