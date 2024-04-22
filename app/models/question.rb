@@ -1,7 +1,7 @@
 class Question < ApplicationRecord
-  belongs_to :question_set
+  belongs_to :instrument
 
-  has_many :options
+  has_many :options, dependent: :destroy
 
   validates :description, presence: true
 end

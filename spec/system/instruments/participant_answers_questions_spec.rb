@@ -2,10 +2,11 @@ require 'rails_helper'
 
 describe 'Participant accesses instrument questions page' do
   it 'and questions and options are displayed correctly' do
-    question_set = create(:question_set)
+    instrument = create(:instrument)
+    participant_instrument = create(:participant_instrument, instrument:)
 
     5.times do |qtn|
-      question = create(:question, description: "Questão #{qtn + 1}", question_set:)
+      question = create(:question, description: "Questão #{qtn + 1}", instrument:)
       4.times do |opt|
         create(:option, description: "Opção #{opt + 1} da questão #{qtn + 1}", question:)
       end
@@ -15,7 +16,7 @@ describe 'Participant accesses instrument questions page' do
       .to receive(:participant_validated?)
       .and_return(true)
 
-    visit participant_instrument_questionnaire_path(question_set.participant_instrument)
+    visit participant_instrument_questionnaire_path(participant_instrument)
 
     5.times do |idx|
       within "#question#{idx + 1}" do
@@ -33,11 +34,11 @@ describe 'Participant accesses instrument questions page' do
   end
 
   it 'and answers all questions' do
-    participant_instrument = create(:participant_instrument)
-    question_set = create(:question_set, participant_instrument:)
+    instrument = create(:instrument)
+    participant_instrument = create(:participant_instrument, instrument:)
 
     5.times do |qtn|
-      question = create(:question, description: "Questão #{qtn + 1}", question_set:)
+      question = create(:question, description: "Questão #{qtn + 1}", instrument:)
       4.times do |opt|
         create(:option, description: "Opção #{opt + 1} da questão #{qtn + 1}", question:)
       end
@@ -78,10 +79,11 @@ describe 'Participant accesses instrument questions page' do
   end
 
   it 'and submits form without answering all questions' do
-    question_set = create(:question_set)
+    instrument = create(:instrument)
+    participant_instrument = create(:participant_instrument, instrument:)
 
     5.times do |qtn|
-      question = create(:question, description: "Questão #{qtn + 1}", question_set:)
+      question = create(:question, description: "Questão #{qtn + 1}", instrument:)
       4.times do |opt|
         create(:option, description: "Opção #{opt + 1} da questão #{qtn + 1}", question:)
       end
@@ -91,7 +93,7 @@ describe 'Participant accesses instrument questions page' do
       .to receive(:participant_validated?)
       .and_return(true)
 
-    visit participant_instrument_questionnaire_path(question_set.participant_instrument)
+    visit participant_instrument_questionnaire_path(participant_instrument)
 
     within '#question2' do
       find(:label, 'Opção 4 da questão 2').click

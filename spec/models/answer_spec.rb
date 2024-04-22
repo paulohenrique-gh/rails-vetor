@@ -4,13 +4,13 @@ RSpec.describe Answer, type: :model do
   context '.save_answers' do
     it 'instantiate answers according to parameters' do
       participant_instrument = create(:participant_instrument)
-      question_set = create(:question_set, participant_instrument:)
+      instrument = participant_instrument.instrument
 
-      question1 = create(:question, question_set:)
-      question2 = create(:question, question_set:)
-      question3 = create(:question, question_set:)
-      question4 = create(:question, question_set:)
-      question5 = create(:question, question_set:)
+      question1 = create(:question, instrument:)
+      question2 = create(:question, instrument:)
+      question3 = create(:question, instrument:)
+      question4 = create(:question, instrument:)
+      question5 = create(:question, instrument:)
 
       selected_option_for_question1 = create(:option, question: question1, weight: 2)
       selected_option_for_question2 = create(:option, question: question2, weight: 3)
