@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_22_172813) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_22_181538) do
   create_table "answers", force: :cascade do |t|
     t.integer "participant_instrument_id", null: false
     t.integer "option_id", null: false
@@ -59,13 +59,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_22_172813) do
     t.index ["email"], name: "index_participants_on_email", unique: true
   end
 
-  create_table "question_sets", force: :cascade do |t|
-    t.integer "participant_instrument_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["participant_instrument_id"], name: "index_question_sets_on_participant_instrument_id"
-  end
-
   create_table "questions", force: :cascade do |t|
     t.text "description", null: false
     t.datetime "created_at", null: false
@@ -79,6 +72,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_22_172813) do
   add_foreign_key "options", "questions"
   add_foreign_key "participant_instruments", "instruments"
   add_foreign_key "participant_instruments", "participants"
-  add_foreign_key "question_sets", "participant_instruments"
   add_foreign_key "questions", "instruments"
 end
