@@ -28,7 +28,23 @@ RSpec.describe ParticipantInstrument, type: :model do
     end
   end
 
-  pending '#finished!'
+  context '#finished!' do
+    it 'updates status when score is not nil' do
+      participant_instrument = create(:participant_instrument, score: 8, status: :pending)
+      
+      participant_instrument.finished!
+
+      expect(participant_instrument.status).to eq 'finished'
+    end
+
+    it 'does not update status when score is nil' do
+      participant_instrument = create(:participant_instrument, score: nil, status: :pending)
+
+      participant_instrument.finished!
+
+      expect(participant_instrument.status).to eq 'pending'
+    end
+  end
 
   context '#compute_score' do
     it 'calculates score attribute according to associated answers' do
@@ -56,6 +72,12 @@ RSpec.describe ParticipantInstrument, type: :model do
       participant_instrument.compute_score
 
       expect(participant_instrument.score).to eq 9
+    end
+
+    it 'raises error if status is finished' do
+      participant_instrument = create(:participant_instrument, status: :finished)
+
+      expect { participant_instrument.compute_score }.to raise_error(RuntimeError, 'Score already computed')
     end
   end
 end

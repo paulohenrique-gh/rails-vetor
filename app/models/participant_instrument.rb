@@ -8,7 +8,12 @@ class ParticipantInstrument < ApplicationRecord
 
   enum status: { pending: 0, finished: 1 }
 
+  def finished!
+    super if score
+  end
+
   def compute_score
+    raise 'Score already computed' if finished? 
     self.score = 0
     self.answers.each { |answer| self.score += answer.weight }
 
