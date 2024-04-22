@@ -1,5 +1,7 @@
 class ParticipantInstrumentsController < ApplicationController
   def show
+    validate_status 
+   
     # TODO: change this action to instrument#show
     unless participant_validated?
       return redirect_to participant_instrument_validation_path(params[:id]),
@@ -45,6 +47,17 @@ class ParticipantInstrumentsController < ApplicationController
   def completion; end
 
   private
+
+  # def set_participant_instrument
+  #   @participant_instrument = ParticipantInstrument.find(params[:participant_instrument_id])
+  # end
+
+  def validate_status
+    participant_instrument = ParticipantInstrument.find(params[:id])
+    if participant_instrument.finished?
+      redirect_to instrument_completion_path, notice: 'Questionário já submetido' 
+    end
+  end
 
   def submitted_participant_data
     params.require(:participant).permit(:name, :cpf, :email, :date_of_birth)

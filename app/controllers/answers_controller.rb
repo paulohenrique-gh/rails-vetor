@@ -9,22 +9,18 @@ class AnswersController < ApplicationController
       return render 'participant_instruments/show', status: :bad_request
     end
 
-    instantiate_answers
+    Answer.save_answers(answers: answers_params, participant_instrument: @participant_instrument)
 
-    # TODO: compute score and save it to participant_instrument.score
     redirect_to instrument_completion_path
   end
 
   private
 
   def missing_answers?
-    params[:responses].keys != QUESTION_INDEXES
+    params[:answers].keys != QUESTION_INDEXES
   end
 
-  def instantiate_answers
-    params[:responses].each do |_, value|
-      option = Option.find(value[:option_id])
-      @participant_instrument.answers.create!(option:)
-    end
+  def answers_params
+    params[:answers].permit(QUESTION_INDEXES.map { |index| { index => [:option_id] } })
   end
 end

@@ -105,5 +105,15 @@ describe 'Participant accesses instrument questions page' do
     expect(Answer.count).to eq 0
   end
 
-  pending 'and it was already submitted'
+  it 'and it was already submitted' do
+    participant_instrument = create(:participant_instrument, status: :finished)
+
+    allow_any_instance_of(ParticipantInstrumentsController)
+      .to receive(:participant_validated?)
+      .and_return(true)
+
+    visit participant_instrument_path(participant_instrument)
+
+    expect(page).to have_content 'Questionário já submetido'
+  end
 end
