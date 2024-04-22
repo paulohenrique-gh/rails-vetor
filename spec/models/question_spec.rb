@@ -45,7 +45,7 @@ RSpec.describe Question, type: :model do
   it 'number of options cannot exceed 4' do
     question = create(:question)
 
-    4.times { create(:option, question:) }
+    4.times { |weight| create(:option, question:, weight:) }
 
     expect { question.options.create!(description: 'Questão 5', weight: 3) }
       .to raise_error Question::OptionsLimitExceeded

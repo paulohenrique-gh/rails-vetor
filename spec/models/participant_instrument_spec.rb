@@ -31,7 +31,7 @@ RSpec.describe ParticipantInstrument, type: :model do
   context '#finished!' do
     it 'updates status when score is not nil' do
       participant_instrument = create(:participant_instrument, score: 8, status: :pending)
-      
+
       participant_instrument.finished!
 
       expect(participant_instrument.status).to eq 'finished'
@@ -45,7 +45,14 @@ RSpec.describe ParticipantInstrument, type: :model do
       expect(participant_instrument.status).to eq 'pending'
     end
 
-    pending 'updates finished_at attribute with current time'
+    it 'updates finished_at attribute with current time' do
+      participant_instrument = create(:participant_instrument,
+                                      score: 7, status: :pending, finished_at: nil)
+
+      participant_instrument.finished!
+
+      expect(participant_instrument.reload.finished_at).not_to be_nil
+    end
   end
 
   context '#compute_score' do
@@ -79,7 +86,8 @@ RSpec.describe ParticipantInstrument, type: :model do
     it 'raises error if status is finished' do
       participant_instrument = create(:participant_instrument, status: :finished)
 
-      expect { participant_instrument.compute_score }.to raise_error(RuntimeError, 'Score already computed')
+      expect { participant_instrument.compute_score }
+        .to raise_error ParticipantInstrument::ScoreAlreadyComputed
     end
   end
 end

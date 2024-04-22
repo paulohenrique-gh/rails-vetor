@@ -7,8 +7,9 @@ describe 'Participant accesses instrument questions page' do
 
     5.times do |qtn|
       question = create(:question, description: "Questão #{qtn + 1}", instrument:)
-      4.times do |opt|
-        create(:option, description: "Opção #{opt + 1} da questão #{qtn + 1}", question:)
+      4.times do |idx|
+        create(:option, description: "Opção #{idx + 1} da questão #{qtn + 1}",
+                        question:, weight: idx)
       end
     end
 
@@ -39,8 +40,9 @@ describe 'Participant accesses instrument questions page' do
 
     5.times do |qtn|
       question = create(:question, description: "Questão #{qtn + 1}", instrument:)
-      4.times do |opt|
-        create(:option, description: "Opção #{opt + 1} da questão #{qtn + 1}", question:)
+      4.times do |idx|
+        create(:option, description: "Opção #{idx + 1} da questão #{qtn + 1}",
+                        question:, weight: idx)
       end
     end
 
@@ -84,8 +86,9 @@ describe 'Participant accesses instrument questions page' do
 
     5.times do |qtn|
       question = create(:question, description: "Questão #{qtn + 1}", instrument:)
-      4.times do |opt|
-        create(:option, description: "Opção #{opt + 1} da questão #{qtn + 1}", question:)
+      4.times do |idx|
+        create(:option, description: "Opção #{idx + 1} da questão #{qtn + 1}",
+                        question:, weight: idx)
       end
     end
 
