@@ -13,7 +13,8 @@ describe 'User views participant page' do
     participant.participant_instruments.create!(instrument: instrument_one, status: :pending,
                                                 created_at: '2022-01-29')
     participant.participant_instruments.create!(instrument: instrument_two, status: :finished,
-                                                created_at: '2021-03-14', finished_at: '2021-03-17')
+                                                created_at: '2021-03-14', finished_at: '2021-03-17',
+                                                score: 8)
 
     visit root_path
     click_on 'Mara Cristina Pereira'
@@ -37,7 +38,6 @@ describe 'User views participant page' do
       expect(page).to have_selector 'td:nth-of-type(2)', text: 'Pendente'
       expect(page).to have_selector 'td:nth-of-type(3)', text: '29/01/2022'
       expect(page).to have_selector 'td:nth-of-type(4)', text: ''
-      # TODO: update score here after implementing it in other issue
       expect(page).to have_selector 'td:nth-of-type(5)', text: ''
     end
 
@@ -46,7 +46,7 @@ describe 'User views participant page' do
       expect(page).to have_selector 'td:nth-of-type(2)', text: 'Finalizado'
       expect(page).to have_selector 'td:nth-of-type(3)', text: '14/03/2021'
       expect(page).to have_selector 'td:nth-of-type(4)', text: '17/03/2021'
-      expect(page).to have_selector 'td:nth-of-type(5)', text: ''
+      expect(page).to have_selector 'td:nth-of-type(5)', text: '8'
     end
   end
 
