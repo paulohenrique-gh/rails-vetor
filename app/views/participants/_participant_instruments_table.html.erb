@@ -23,7 +23,7 @@
       <td><%= part_inst.instrument.description %></td>
       <td class="text-end"><%= ParticipantInstrument.human_attribute_name("status.#{part_inst.status}") %></td>
       <td class="text-end"><%= l(part_inst.created_at.to_date) %></td>
-      <td class="text-end"><%= l(part_inst.finished_at&.to_date) if part_inst.finished? %></td>
+      <td class="text-end"><%= l(part_inst.finished_at.to_date) if part_inst.finished? %></td>
       <td class="text-end"><%# TODO: add score here after implementing it %></td>
     </tr>
   <% end %>

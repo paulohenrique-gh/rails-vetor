@@ -1,1 +1,23 @@
-TODO: Listagem de avaliados com link para a página individual
+<%= link_to t(:register_new_participant), new_participant_path, class: 'btn btn-primary mb-5' %>
+
+<% if @participants.any? %>
+  <table class="table table-striped">
+    <tr>
+      <th><%= Participant.human_attribute_name(:name) %></th>
+      <th><%= Participant.human_attribute_name(:cpf) %></th>
+      <th class="text-end"><%= Participant.human_attribute_name(:email) %></th>
+      <th class="text-end"><%= Participant.human_attribute_name(:date_of_birth) %></th>
+    </tr>
+
+    <% @participants.each do |participant| %>
+      <tr>
+        <td><%= link_to participant.name, participant %></td>
+        <td><%= participant.cpf %></td>
+        <td class="text-end"><%= participant.email %></td>
+        <td class="text-end"><%= l(participant.date_of_birth) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p><%= t(:no_registered_participants) %></p>
+<% end %>

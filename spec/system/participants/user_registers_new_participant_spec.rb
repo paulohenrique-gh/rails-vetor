@@ -3,7 +3,9 @@ require 'rails_helper'
 describe 'User registers new participants' do
   it 'from the home page' do
     visit root_path
-    click_on 'Cadastrar novo avaliado'
+    within 'nav' do
+      click_on 'Cadastrar novo avaliado'
+    end
 
     fill_in 'Nome', with: 'João Luiz Medeiros'
     fill_in 'CPF', with: '687.471.980-79'

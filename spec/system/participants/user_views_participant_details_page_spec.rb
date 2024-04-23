@@ -15,8 +15,8 @@ describe 'User views participant page' do
     participant.participant_instruments.create!(instrument: instrument_two, status: :finished,
                                                 created_at: '2021-03-14', finished_at: '2021-03-17')
 
-    # TODO: visit root path after creating participants list on the home page
-    visit participant_path(participant)
+    visit root_path
+    click_on 'Mara Cristina Pereira'
 
     expect(page).to have_content 'Mara Cristina Pereira'
     expect(page).to have_content '414.298.400-48'
@@ -51,5 +51,14 @@ describe 'User views participant page' do
       expect(page).to have_selector 'td:nth-of-type(5)', text: '17/03/2021'
       expect(page).to have_selector 'td:nth-of-type(6)', text: ''
     end
+  end
+
+  it 'and no instrument has been assigned yet' do
+    participant = create(:participant, name: 'Mara Cristina Pereira', cpf: '414.298.400-48',
+                                       email: 'mara@email.com', date_of_birth: '1989-12-09')
+    
+    visit participant_path(participant)
+
+    expect(page).to have_content 'Avaliado ainda não possui instrumentos aplicados'
   end
 end

@@ -4,5 +4,9 @@
             new_participant_participant_instrument_path(@participant),
             class: 'btn btn-primary mb-5' %>
 
-<%= render partial: 'participant_instruments_table',
-           locals: { participant_instruments: @participant.participant_instruments } %>
+<% if @participant.participant_instruments.any? %>
+  <%= render partial: 'participant_instruments_table',
+    locals: { participant_instruments: @participant.participant_instruments } %>
+<% else %>
+  <p><%= t(:no_instruments_assigned) %></p>
+<% end %>
