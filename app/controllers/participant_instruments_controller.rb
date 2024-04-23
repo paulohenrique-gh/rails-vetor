@@ -1,6 +1,6 @@
 class ParticipantInstrumentsController < ApplicationController
   def show
-    @participant_instrument = ParticipantInstrument.find(params[:id]) 
+    @participant_instrument = ParticipantInstrument.find(params[:id])
   end
 
   def create

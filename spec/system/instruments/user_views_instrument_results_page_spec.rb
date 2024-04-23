@@ -55,7 +55,7 @@ describe 'User views intrument results page' do
     expect(page).to have_content 'Status'
     expect(page).to have_content 'Finalizado'
     expect(page).to have_content 'Aplicado em'
-    expect(page).to have_content "#{I18n.l(participant_instrument.created_at.to_date)}"
+    expect(page).to have_content I18n.l(participant_instrument.created_at.to_date)
     expect(page).to have_content 'Concluído em'
     expect(page).to have_content '11/12/2023'
 
