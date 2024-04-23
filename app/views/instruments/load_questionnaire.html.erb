@@ -2,9 +2,9 @@
            locals: { participant: @participant_instrument.participant } %>
 
 <%= form_with(url: participant_instrument_submit_path(@participant_instrument.id),
-              method: :post, class: 'container') do |f| %>
+              method: :post, class: 'w-50') do |f| %>
   <% @participant_instrument.questions.each_with_index do |q, i| %>
-    <div id="question<%= i + 1 %>" class="card p-3 w-75 m-auto mb-3">
+    <div id="question<%= i + 1 %>" class="card p-3 m-auto mb-3">
       <p class="fw-semibold"><%= q.description %></p>
       <% q.options.each do |o| %>
         <div class="d-flex gap-3">

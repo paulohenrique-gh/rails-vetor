@@ -24,3 +24,8 @@ pt-BR:
   select_prompt: Selecione um instrumento
   mail_subject: Vetor - Novo Questionário
   no_instruments_assigned: Avaliado ainda não possui instrumentos aplicados
+  assignment_date_label: Aplicado em
+  finish_date_label: Concluído em
+  total_score: Pontuação total
+  selected_option: Resposta do avaliado
+  option_weight: Pontuação individual

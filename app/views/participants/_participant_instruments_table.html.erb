@@ -2,7 +2,7 @@
 <table class="table table-striped">
   <tr>
     <th><%= Instrument.human_attribute_name(:name) %></th>
-    <th><%= Instrument.human_attribute_name(:description) %></th>
+    <!-- <th><%# Instrument.human_attribute_name(:description) %></th> -->
     <th class="text-end">
       <%= ParticipantInstrument.human_attribute_name(:status) %>
     </th>
@@ -21,7 +21,8 @@
   <% participant_instruments.each do |part_inst| %>
     <tr>
       <td><%= part_inst.instrument.name %></td>
-      <td><%= part_inst.instrument.description %></td>
+      <%# TODO: remove description %>
+      <!-- <td><%# part_inst.instrument.description %></td> -->
       <td class="text-end"><%= ParticipantInstrument.human_attribute_name("status.#{part_inst.status}") %></td>
       <td class="text-end"><%= l(part_inst.created_at.to_date) %></td>
       <td class="text-end"><%= l(part_inst.finished_at.to_date) if part_inst.finished? %></td>
