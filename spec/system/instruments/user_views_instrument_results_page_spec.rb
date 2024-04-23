@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User views intrument results page' do
-  it 'from the participant page' do
+  it 'with finished status' do
     participant = create(:participant)
     instrument = create(:instrument, name: 'Teste de Autoestima',
                                      description: 'Avalia autoestima do indivíduo')
@@ -101,5 +101,21 @@ describe 'User views intrument results page' do
 
     expect(page).to have_content 'Pontuação total'
     expect(page).to have_content '8'
+  end
+
+  it 'with pending status' do
+    participant = create(:participant)
+    instrument = create(:instrument, name: 'Teste de Autoestima',
+                                     description: 'Avalia autoestima do indivíduo')
+
+    participant_instrument = create(:participant_instrument, participant:,
+                                                             instrument:, status: :pending)
+
+    visit participant_instrument_path(participant_instrument)
+
+    expect(page).to have_content 'Pendente'
+    expect(page).not_to have_content 'Concluído em'
+    expect(page).not_to have_content 'Pontuação total'
+    expect(page).not_to have_selector '#participant_answers'
   end
 end

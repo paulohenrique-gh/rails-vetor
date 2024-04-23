@@ -31,6 +31,7 @@ describe 'User views participant page' do
       expect(page).to have_selector 'th:nth-of-type(3)', text: 'Data de aplicação'
       expect(page).to have_selector 'th:nth-of-type(4)', text: 'Data de finalização'
       expect(page).to have_selector 'th:nth-of-type(5)', text: 'Pontuação'
+      expect(page).to have_selector 'th:nth-of-type(6)', text: ''
     end
 
     within 'table tr:nth-child(2)' do
