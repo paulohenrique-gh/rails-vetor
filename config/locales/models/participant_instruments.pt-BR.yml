@@ -19,7 +19,6 @@ pt-BR:
     participant_not_validated: Dados não validados
     incorrect_data: Dados incorretos
   assign_new: Aplicar novo instrumento
-  assign: Aplicar
   next: Próximo
   select_prompt: Selecione um instrumento
   mail_subject: Vetor - Novo Questionário

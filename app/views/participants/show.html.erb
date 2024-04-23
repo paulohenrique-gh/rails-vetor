@@ -1,8 +1,17 @@
 <%= render @participant %>
 
-<%= link_to t(:assign_new),
-            new_participant_participant_instrument_path(@participant),
-            class: 'btn btn-primary mb-5' %>
+<% if @options_for_new_instruments.any? %>
+  <%= form_with(model: [@participant, ParticipantInstrument.new],
+                class: 'd-flex justify-content-between mb-5') do |f| %>
+    <div class="d-flex justify-content-between gap-5 w-100">
+      <%= f.label :instrument_id, class: 'd-none' %>
+      <%= collection_select :participant_instrument, :instrument_id,
+        @options_for_new_instruments, :id, :name,
+        prompt: t(:select_prompt), required: true, class: 'me-3' %>
+      <%= f.submit t(:assign_new), class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+<% end %>
 
 <% if @participant.participant_instruments.any? %>
   <%= render partial: 'participant_instruments_table',

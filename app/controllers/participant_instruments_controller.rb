@@ -3,12 +3,6 @@ class ParticipantInstrumentsController < ApplicationController
     @participant_instrument = ParticipantInstrument.find(params[:id]) 
   end
 
-  def new
-    @participant = Participant.find(params[:participant_id])
-    @participant_instrument = @participant.participant_instruments.build
-    @options = Instrument.all
-  end
-
   def create
     participant = Participant.find(params[:participant_id])
     instrument = Instrument.find(params[:participant_instrument][:instrument_id])

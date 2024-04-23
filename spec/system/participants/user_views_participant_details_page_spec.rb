@@ -23,7 +23,7 @@ describe 'User views participant page' do
     expect(page).to have_content '414.298.400-48'
     expect(page).to have_content 'mara@email.com'
     expect(page).to have_content '09/12/1989'
-    expect(page).to have_link 'Aplicar novo instrumento'
+    expect(page).to have_selector 'form', text: 'Selecione um instrumento'
 
     within 'table tr:first-child' do
       expect(page).to have_selector 'th:nth-of-type(1)', text: 'Nome'
@@ -58,5 +58,13 @@ describe 'User views participant page' do
     visit participant_path(participant)
 
     expect(page).to have_content 'Avaliado ainda não possui instrumentos aplicados'
+  end
+
+  it 'and there is no instrument available' do
+    participant = create(:participant)
+
+    visit participant_path(participant)
+
+    expect(page).not_to have_selector 'form', text: 'Selecione um instrumento'
   end
 end

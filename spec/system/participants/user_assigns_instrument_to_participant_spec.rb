@@ -9,9 +9,8 @@ describe 'User assigns instrument to participant' do
                         description: 'Avalia possibilidade de quadro ansioso')
 
     visit participant_path(participant)
-    click_on 'Aplicar novo instrumento'
     select 'Teste de Ansiedade', from: 'Instrumento'
-    click_on 'Aplicar'
+    click_on 'Aplicar novo instrumento'
 
     expect(page).to have_current_path participant_path(participant)
     expect(page).to have_content 'Instrumento aplicado com sucesso!'

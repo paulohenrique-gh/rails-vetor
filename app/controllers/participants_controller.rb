@@ -1,6 +1,7 @@
 class ParticipantsController < ApplicationController
   def show
     @participant = Participant.find(params[:id])
+    @options_for_new_instruments = Instrument.all
   end
 
   def new
