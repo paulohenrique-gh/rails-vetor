@@ -56,7 +56,7 @@ describe 'User views participant page' do
   it 'and no instrument has been assigned yet' do
     participant = create(:participant, name: 'Mara Cristina Pereira', cpf: '414.298.400-48',
                                        email: 'mara@email.com', date_of_birth: '1989-12-09')
-    
+
     visit participant_path(participant)
 
     expect(page).to have_content 'Avaliado ainda não possui instrumentos aplicados'
