@@ -13,7 +13,7 @@ describe 'User views intrument results page' do
     question1 = create(:question, description: 'Descrição questão 1', instrument:)
     question1_3points = create(:option, description: 'Opção 1', weight: 3, question: question1)
     create(:option, description: 'Opção 2', weight: 2, question: question1)
-    create(:option, description: 'Opção 3', weight: 2, question: question1)
+    create(:option, description: 'Opção 3', weight: 1, question: question1)
     create(:option, description: 'Opção 4', weight: 0, question: question1)
 
     question2 = create(:question, description: 'Descrição questão 2', instrument:)

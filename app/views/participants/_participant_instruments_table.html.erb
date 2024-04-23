@@ -15,6 +15,7 @@
     <th class="text-end">
       <%= ParticipantInstrument.human_attribute_name(:score) %>
     </th>
+    <th></th>
   </tr>
 
   <% participant_instruments.each do |part_inst| %>
@@ -25,6 +26,7 @@
       <td class="text-end"><%= l(part_inst.created_at.to_date) %></td>
       <td class="text-end"><%= l(part_inst.finished_at.to_date) if part_inst.finished? %></td>
       <td class="text-end"><%# TODO: add score here after implementing it %></td>
+      <td class="text-end"><%= link_to 'Detalhes', participant_instrument_path(part_inst) %></td>
     </tr>
   <% end %>
 </table>

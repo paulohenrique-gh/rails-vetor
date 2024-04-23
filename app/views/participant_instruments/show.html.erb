@@ -1,0 +1,44 @@
+<%= render partial: 'participants/participant',
+           locals: { participant: @participant_instrument.participant} %>
+
+<section>
+  <div>
+    <h1><%= @participant_instrument.instrument.name %></h1>
+    <h2><%= @participant_instrument.instrument.description %></h2>
+  </div>
+
+  <div>
+    <p>
+      <div class="text-muted">Status</div>
+      <div>
+        <%= ParticipantInstrument.human_attribute_name("status.#{@participant_instrument.status}") %>
+      </div>
+    </p>
+
+    <p>
+      <div class="text-muted">Aplicado em</div>
+      <div>
+        <%= l(@participant_instrument.created_at.to_date) %>
+      </div>
+    </p>
+
+    <p>
+      <div class="text-muted">Concluído em</div>
+      <div>
+        <%= l(@participant_instrument.finished_at.to_date) %>
+      </div>
+    </p>
+  </div>
+
+  <div>
+    <% @participant_instrument.answers.each_with_index do |answer, index| %>
+      <div id="question<%= index + 1%>">
+        <div><%= answer.question.description %></div>
+        <div>Resposta do avaliado: <%= answer.option.description %></div>
+        <div>Pontuação individual: <%= answer.weight %></div>
+      </div>
+    <% end %>
+  </div>
+  
+  <p>Pontuação total: <%= @participant_instrument.score %></p>
+</section>
