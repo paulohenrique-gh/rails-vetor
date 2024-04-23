@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      participant:
+        one: Psicólogo
+        other: Psicólogos
+    attributes:
+      psychologist:
+        email: E-mail        
+        password: Senha
+        password_confirmation: Confirmação de senha
