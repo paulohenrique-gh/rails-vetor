@@ -3,42 +3,57 @@
 
 <section>
   <div>
-    <h1><%= @participant_instrument.instrument.name %></h1>
-    <h2><%= @participant_instrument.instrument.description %></h2>
+    <h1 class="fs-3"><%= @participant_instrument.instrument.name %></h1>
+    <p><%= @participant_instrument.instrument.description %></p>
   </div>
 
-  <div>
-    <p>
-      <div class="text-muted">Status</div>
-      <div>
+  <div class="d-flex justify-content-between mb-3">
+    <div class="d-flex flex-column">
+      <span class="text-muted fw-light">Status</span>
+      <span>
         <%= ParticipantInstrument.human_attribute_name("status.#{@participant_instrument.status}") %>
-      </div>
-    </p>
+      </span>
+    </div>
 
-    <p>
-      <div class="text-muted">Aplicado em</div>
-      <div>
-        <%= l(@participant_instrument.created_at.to_date) %>
-      </div>
-    </p>
+    <div class="d-flex flex-column">
+      <span class="text-muted fw-light">Aplicado em</span>
+      <span><%= l(@participant_instrument.created_at.to_date) %></span>
+    </div>
 
-    <p>
-      <div class="text-muted">Concluído em</div>
-      <div>
-        <%= l(@participant_instrument.finished_at.to_date) %>
-      </div>
-    </p>
-  </div>
-
-  <div>
-    <% @participant_instrument.answers.each_with_index do |answer, index| %>
-      <div id="question<%= index + 1%>">
-        <div><%= answer.question.description %></div>
-        <div>Resposta do avaliado: <%= answer.option.description %></div>
-        <div>Pontuação individual: <%= answer.weight %></div>
-      </div>
-    <% end %>
+    <div class="d-flex flex-column">
+      <span class="text-muted fw-light">Concluído em</span>
+      <span><%= l(@participant_instrument.finished_at.to_date) %></span>
+    </div>
   </div>
   
-  <p>Pontuação total: <%= @participant_instrument.score %></p>
+  <div class="d-flex flex-column">
+    <span class="text-muted">Pontuação total</span>
+    <span class="fs-3"><%= @participant_instrument.score %></span>
+  </div>
+
+  <hr class="border border-2 opacity-75 w-100">
 </section>
+
+
+<section>
+  <% @participant_instrument.answers.each_with_index do |answer, index| %>
+    <div id="question<%= index + 1%>" class="mb-3">
+      <div class="mb-1">
+        <span class="text-muted fw-light"><%= index + 1 %>.</span>
+        <span><%= answer.question.description %></span>
+      </div>
+      <div>
+        <span class="text-muted fw-light">Resposta do avaliado:</span>
+        <%= answer.option.description %>
+      </div>
+      <div>
+        <span class="text-muted fw-light">Pontuação individual:</span>
+        <%= answer.weight %>
+      </div>
+    </div>
+  <% end %>
+
+  <hr class="border border-2 opacity-75 w-100 mt-3">
+</section>
+
+<%= link_to 'Voltar', participant_path(@participant_instrument.participant), class: 'mb-5' %>
