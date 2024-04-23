@@ -1,7 +1,7 @@
 <%= render partial: 'participants/participant',
            locals: { participant: @participant_instrument.participant} %>
 
-<section>
+<section class="w-50">
   <div>
     <h1 class="fs-3"><%= @participant_instrument.instrument.name %></h1>
     <p><%= @participant_instrument.instrument.description %></p>
@@ -32,28 +32,29 @@
   </div>
 
   <hr class="border border-2 opacity-75 w-100">
+
+  <div>
+    <% @participant_instrument.answers.each_with_index do |answer, index| %>
+      <div id="question<%= index + 1%>" class="mb-3">
+        <div class="mb-1">
+          <span class="text-muted fw-light"><%= index + 1 %>.</span>
+          <span><%= answer.question.description %></span>
+        </div>
+        <div>
+          <span class="text-muted fw-light">Resposta do avaliado:</span>
+          <%= answer.option.description %>
+        </div>
+        <div>
+          <span class="text-muted fw-light">Pontuação individual:</span>
+          <%= answer.weight %>
+        </div>
+      </div>
+    <% end %>
+
+    <hr class="border border-2 opacity-75 w-100 mt-3">
+  </div>
 </section>
 
 
-<section>
-  <% @participant_instrument.answers.each_with_index do |answer, index| %>
-    <div id="question<%= index + 1%>" class="mb-3">
-      <div class="mb-1">
-        <span class="text-muted fw-light"><%= index + 1 %>.</span>
-        <span><%= answer.question.description %></span>
-      </div>
-      <div>
-        <span class="text-muted fw-light">Resposta do avaliado:</span>
-        <%= answer.option.description %>
-      </div>
-      <div>
-        <span class="text-muted fw-light">Pontuação individual:</span>
-        <%= answer.weight %>
-      </div>
-    </div>
-  <% end %>
-
-  <hr class="border border-2 opacity-75 w-100 mt-3">
-</section>
 
 <%= link_to 'Voltar', participant_path(@participant_instrument.participant), class: 'mb-5' %>
