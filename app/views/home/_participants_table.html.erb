@@ -1,0 +1,17 @@
+<table class="table table-striped">
+  <tr>
+    <th><%= Participant.human_attribute_name(:name) %></th>
+    <th><%= Participant.human_attribute_name(:cpf) %></th>
+    <th class="text-end"><%= Participant.human_attribute_name(:email) %></th>
+    <th class="text-end"><%= Participant.human_attribute_name(:date_of_birth) %></th>
+  </tr>
+
+  <% participants.each do |participant| %>
+    <tr>
+      <td><%= link_to participant.name, participant %></td>
+      <td><%= participant.cpf %></td>
+      <td class="text-end"><%= participant.email %></td>
+      <td class="text-end"><%= l(participant.date_of_birth) %></td>
+    </tr>
+  <% end %>
+</table>

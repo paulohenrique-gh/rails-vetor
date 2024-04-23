@@ -17,7 +17,7 @@ class AnswersController < ApplicationController
   private
 
   def missing_answers?
-    params[:answers].keys != QUESTION_INDEXES
+    params[:answers]&.keys != QUESTION_INDEXES
   end
 
   def answers_params

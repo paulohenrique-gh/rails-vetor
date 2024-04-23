@@ -17,3 +17,5 @@ pt-BR:
   save: Salvar
   invalid_cpf: inválido
   assigned_instruments: Instrumentos aplicados
+  register_new_participant: Cadastrar novo avaliado
+  no_registered_participants: Você ainda não tem avaliados cadastrados

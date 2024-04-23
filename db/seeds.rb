@@ -148,7 +148,7 @@ emotional_intelligence_questions_and_options = [
     ]
   },
   {
-    question: 'Você sabe suas qualidades e defeitos?',
+    question: 'Você reconhece como seu comportamento afeta os outros?',
     options: [
       { description: 'Sempre', weight: 3 },
       { description: 'Frequentemente', weight: 2 },
