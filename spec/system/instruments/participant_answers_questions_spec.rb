@@ -8,7 +8,7 @@ describe 'Participant accesses instrument questions page' do
     5.times do |qtn|
       question = create(:question, description: "Questão #{qtn + 1}", instrument:)
       4.times do |idx|
-        create(:option, description: "Opção #{idx + 1} da questão #{qtn + 1}",
+        create(:option, description: "#{idx} pontos para questão #{qtn + 1}",
                         question:, weight: idx)
       end
     end
@@ -41,7 +41,7 @@ describe 'Participant accesses instrument questions page' do
     5.times do |qtn|
       question = create(:question, description: "Questão #{qtn + 1}", instrument:)
       4.times do |idx|
-        create(:option, description: "Opção #{idx + 1} da questão #{qtn + 1}",
+        create(:option, description: "#{idx} pontos para questão #{qtn + 1}",
                         question:, weight: idx)
       end
     end
@@ -53,32 +53,32 @@ describe 'Participant accesses instrument questions page' do
     visit participant_instrument_questionnaire_path(participant_instrument)
 
     within '#question1' do
-      find(:label, 'Opção 2 da questão 1').click
+      find(:label, '2 pontos para questão 1').click
     end
 
     within '#question2' do
-      find(:label, 'Opção 4 da questão 2').click
+      find(:label, '0 pontos para questão 2').click
     end
 
     within '#question3' do
-      find(:label, 'Opção 1 da questão 3').click
+      find(:label, '1 pontos para questão 3').click
     end
 
     within '#question4' do
-      find(:label, 'Opção 1 da questão 4').click
+      find(:label, '3 pontos para questão 4').click
     end
 
     within '#question5' do
-      find(:label, 'Opção 3 da questão 5').click
+      find(:label, '1 pontos para questão 5').click
     end
 
     click_on 'Salvar'
 
-    # TODO: create expectation for final score
     expect(page).to have_content 'Respostas salvas com sucesso!'
     expect(page).to have_content 'Obrigado por responder ao questionário.'
     expect(Answer.count).to eq 5
     expect(participant_instrument.reload.status).to eq 'finished'
+    expect(participant_instrument.score).to eq 7
   end
 
   it 'and submits form without answering all questions' do
