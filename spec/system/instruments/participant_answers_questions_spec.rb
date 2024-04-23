@@ -74,6 +74,7 @@ describe 'Participant accesses instrument questions page' do
 
     click_on 'Salvar'
 
+    # TODO: create expectation for final score
     expect(page).to have_content 'Respostas salvas com sucesso!'
     expect(page).to have_content 'Obrigado por responder ao questionário.'
     expect(Answer.count).to eq 5

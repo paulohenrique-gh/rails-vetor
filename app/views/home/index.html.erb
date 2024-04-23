@@ -1,8 +1,9 @@
 <%= link_to t(:register_new_participant), new_participant_path, class: 'btn btn-primary mb-5' %>
 
 <% if @participants.any? %>
-<%= render partial: 'participants_table', locals: { participants: @participants } %>
+  <%= render partial: 'participants_table', locals: { participants: @participants } %>
 <% else %>
   <p><%= t(:no_registered_participants) %></p>
 <% end %>
+
 
