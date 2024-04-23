@@ -13,4 +13,16 @@ describe 'User creates new psychologist account' do
     expect(page).to have_content 'Você ainda não tem avaliados cadastrados'
     expect(Psychologist.count).to eq 1
   end
+
+  it 'and logs in' do
+    create(:psychologist, email: 'psicologo@email.com', password: 'password')
+
+    visit root_path
+
+    fill_in 'E-mail', with: 'psicologo@email.com'
+    fill_in 'Senha', with: 'password'
+    click_on 'Entrar' 
+
+    expect(page).to have_content 'Logado com sucesso.'
+  end
 end

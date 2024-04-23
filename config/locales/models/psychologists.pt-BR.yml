@@ -1,7 +1,7 @@
 pt-BR:
   activerecord:
     models:
-      participant:
+      psychologist:
         one: Psicólogo
         other: Psicólogos
     attributes:
