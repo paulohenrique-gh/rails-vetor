@@ -10,9 +10,9 @@ Uma plataforma que permite que psicólogos disponibilizem instrumentos psicológ
 - PostgreSQL
 - Docker
 
-## Executando a aplicação com Docker
+## Executando a aplicação
 
-Clone o repositário e entre no diretório da aplicação:
+Clone o repositório e entre no diretório da aplicação:
 
 ```shell
 git clone git@github.com:paulohenrique-gh/rails-vetor.git
@@ -21,14 +21,16 @@ git clone git@github.com:paulohenrique-gh/rails-vetor.git
 cd rails-vetor
 ```
 
-Com o [Docker](https://www.docker.com/get-started/) instalado, siga os passos abaixo para a executar a aplicação:
+Com o [Docker](https://www.docker.com/get-started/) instalado, execute o comando abaixo para iniciar a aplicação:
 
 ```shell
 docker compose up
 ```
 Isso vai instalar todas as dependências necessárias e iniciar o servidor na porta 3000
 
-Acesse a aplicação através do endereço `http://localhost:3000`
+Acesse a aplicação através do endereço http://localhost:3000
+
+---
 
 Alternativamente, você pode iniciar a aplicação sem Docker. Para isso, é necessário ter instalados localmente Ruby 3.3.0 e Ruby On Rails 7.1.3, além do PostgreSQL, e executar os comandos:
 
@@ -41,7 +43,7 @@ rails server
 
 ## Testes
 
-Os testes foram escritos utilizando a gem [RSpec](https://github.com/rspec/rspec-rails) e [FactoryBot](https://github.com/thoughtbot/factory_bot_rails).
+Os testes foram escritos utilizando as gems [RSpec](https://github.com/rspec/rspec-rails) e [FactoryBot](https://github.com/thoughtbot/factory_bot_rails).
 
 Para executar a suíte de testes, utilize o comando:
 ```shell
@@ -67,6 +69,6 @@ Os dados foram modelados de acordo com o diagrama abaixo.
 
 Foi utilizado o dbdocs para documentar o schema do banco de dados. Você pode visualizar neste link: https://dbdocs.io/phenrique.menoli/Vetor
 
-*********INSERIR IMAGEM DO DIAGRAMA
+![image](https://github.com/paulohenrique-gh/rails-vetor/assets/124916478/d741f994-9b3c-4132-90f0-4032613aa22b)
 
 
