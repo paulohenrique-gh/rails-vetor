@@ -12,6 +12,7 @@ class AnswersController < ApplicationController
     end
 
     Answer.save_answers(answers: answers_params, participant_instrument: @participant_instrument)
+    clear_session
 
     redirect_to instrument_completion_path
   end
@@ -24,5 +25,9 @@ class AnswersController < ApplicationController
 
   def answers_params
     params[:answers].permit(QUESTION_INDEXES.map { |index| { index => [:option_id] } })
+  end
+
+  def clear_session
+    session[:participant_validated] = nil
   end
 end

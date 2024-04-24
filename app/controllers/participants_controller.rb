@@ -4,8 +4,6 @@ class ParticipantsController < ApplicationController
   skip_before_action :authenticate_psychologist!, only: %i[validation validate_participant show]
 
   def show
-    # TODO: is participant here necessary? its already set in authorize
-    @participant = Participant.find(params[:id])
     @options_for_new_instruments = Instrument.all
   end
 
