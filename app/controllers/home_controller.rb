@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @participants = Participant.all
+    @participants = current_psychologist.participants
   end
 end

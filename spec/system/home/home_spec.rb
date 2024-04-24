@@ -1,20 +1,36 @@
 require 'rails_helper'
 
 describe 'Home page' do
-  it 'should display link to register new participant' do
+  it 'has appropriates links on the navbar when user is not logged in' do
     visit root_path
 
+    expect(page).not_to have_link 'Cadastrar novo avaliado'
+    expect(page).not_to have_link 'Avaliados'
+    expect(page).to have_link 'Entrar'
+  end
+
+  it 'should display link to register new participant' do
+    psychologist = create(:psychologist)
+
+    login_as psychologist
+    visit root_path
+
+    expect(page).to have_link 'Meus avaliados'
     expect(page).to have_link 'Cadastrar novo avaliado'
+    expect(page).to have_button 'Sair'
   end
 
   it 'displays a list with registered participants' do
-    create(:participant, name: 'João Carlos Fonseca', cpf: '32591177090',
-                         email: 'carlos@email.com', date_of_birth: '2000-08-13')
-    create(:participant, name: 'Maria Medeiros Martins', cpf: '94844643002',
-                         email: 'maria@email.com', date_of_birth: '1994-04-21')
-    create(:participant, name: 'Pedro Luis Maia', cpf: '11755836007',
-                         email: 'pedro@email.com', date_of_birth: '1988-05-28')
+    psychologist = create(:psychologist)
 
+    create(:participant, name: 'João Carlos Fonseca', cpf: '32591177090',
+                         email: 'carlos@email.com', date_of_birth: '2000-08-13', psychologist:)
+    create(:participant, name: 'Maria Medeiros Martins', cpf: '94844643002',
+                         email: 'maria@email.com', date_of_birth: '1994-04-21', psychologist:)
+    create(:participant, name: 'Pedro Luis Maia', cpf: '11755836007',
+                         email: 'pedro@email.com', date_of_birth: '1988-05-28', psychologist:)
+
+    login_as psychologist
     visit root_path
 
     within 'main' do
@@ -51,8 +67,27 @@ describe 'Home page' do
   end
 
   it 'displays message when no participant is registered' do
+    psychologist = create(:psychologist)
+
+    login_as psychologist
     visit root_path
 
     expect(page).to have_content 'Você ainda não tem avaliados cadastrados'
+  end
+
+  it 'cannot see other psychologists participants' do
+    psychologist1 = create(:psychologist, email: 'psycho1@email.com')
+    psychologist2 = create(:psychologist, email: 'psycho2@email.com')
+
+    create(:participant, name: 'José Maria', cpf: '05298771041',
+                         email: 'jm@email.com', psychologist: psychologist2)
+    create(:participant, name: 'Maria Eduarda', cpf: '73316919023',
+                         email: 'ma@email.com', psychologist: psychologist2)
+
+    login_as psychologist1
+    visit root_path
+
+    expect(page).not_to have_content 'José Maria'
+    expect(page).not_to have_content 'Maria Eduarda'
   end
 end
