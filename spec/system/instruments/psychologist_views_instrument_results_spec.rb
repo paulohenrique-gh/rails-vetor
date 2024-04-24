@@ -1,8 +1,10 @@
 require 'rails_helper'
 
-describe 'User views intrument results page' do
+describe 'Psychologist views intrument results page' do
   it 'with finished status' do
-    participant = create(:participant)
+    psychologist = create(:psychologist)
+
+    participant = create(:participant, psychologist:)
     instrument = create(:instrument, name: 'Teste de Autoestima',
                                      description: 'Avalia autoestima do indivíduo')
 
@@ -46,6 +48,7 @@ describe 'User views intrument results page' do
     create(:answer, option: question4_2points, participant_instrument:)
     create(:answer, option: question5_3points, participant_instrument:)
 
+    login_as psychologist
     visit participant_path(participant)
     click_on 'Detalhes'
 
@@ -104,14 +107,16 @@ describe 'User views intrument results page' do
   end
 
   it 'with pending status' do
-    participant = create(:participant)
+    psychologist = create(:psychologist)
+    participant = create(:participant, psychologist:)
     instrument = create(:instrument, name: 'Teste de Autoestima',
                                      description: 'Avalia autoestima do indivíduo')
 
     participant_instrument = create(:participant_instrument, participant:,
                                                              instrument:, status: :pending)
 
-    visit participant_instrument_path(participant_instrument)
+    login_as psychologist
+    visit participant_instrument_results_path(participant_instrument)
 
     expect(page).to have_content 'Pendente'
     expect(page).not_to have_content 'Concluído em'

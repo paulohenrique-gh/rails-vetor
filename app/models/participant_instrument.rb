@@ -6,6 +6,7 @@ class ParticipantInstrument < ApplicationRecord
 
   has_many :questions, through: :instrument
   has_many :answers, dependent: :destroy
+  has_one :psychologist, through: :participant
 
   enum status: { pending: 0, finished: 1 }
 

@@ -10,6 +10,7 @@ pt-BR:
         cpf: CPF
         email: E-mail
         date_of_birth: Data de nascimento
+        psychologist: Psicólogo
   participants:
     success: Avaliado cadastrado com sucesso!
     failure: Não foi possível cadastrar avaliado.
@@ -19,3 +20,5 @@ pt-BR:
   assigned_instruments: Instrumentos aplicados
   register_new_participant: Cadastrar novo avaliado
   no_registered_participants: Você ainda não tem avaliados cadastrados
+  my_participants: Meus avaliados
+  register_participant: Cadastrar novo avaliado

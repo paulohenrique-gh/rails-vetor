@@ -1,4 +1,6 @@
 class Participant < ApplicationRecord
+  belongs_to :psychologist
+
   has_many :participant_instruments, dependent: :destroy
   has_many :instruments, through: :participant_instruments
 

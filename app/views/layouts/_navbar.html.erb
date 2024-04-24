@@ -1,9 +1,16 @@
 <nav class="navbar bg-body-secondary mb-5">
-  <div class="container-fluid">
+  <div class="container-fluid px-5">
     <span class="navbar-text fw-bold fs-2">
-      Vetor
+      <%= link_to 'Vetor', root_path, class: 'text-decoration-none text-muted' %>
     </span>
-    <%# TODO: I18n and add link to user's participants when login is implemented %>
-    <%= link_to 'Cadastrar novo avaliado', new_participant_path %>
+    <% if psychologist_signed_in? %>
+      <div class="d-flex gap-5 align-items-center">
+        <%= link_to t(:my_participants), root_path, class: 'text-decoration-none text-muted fw-semibold' %>
+        <%= link_to t(:register_participant), new_participant_path, class: 'text-decoration-none text-muted fw-semibold' %>
+        <%= button_to t(:log_out), destroy_psychologist_session_path, method: :delete, class: 'btn btn-danger' %>
+      </div>
+    <% else %>
+      <%= link_to 'Entrar', new_psychologist_session_path %>
+    <% end %>
   </div>
 </nav>

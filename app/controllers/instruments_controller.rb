@@ -1,4 +1,6 @@
 class InstrumentsController < ApplicationController
+  skip_before_action :authenticate_psychologist!, only: %i[load_questionnaire completion]
+
   def load_questionnaire
     unless participant_validated?
       return redirect_to participant_instrument_validation_path(params[:participant_instrument_id]),
@@ -8,6 +10,8 @@ class InstrumentsController < ApplicationController
     @participant_instrument = ParticipantInstrument.find(params[:participant_instrument_id])
     validate_status
   end
+
+  def completion; end
 
   private
 

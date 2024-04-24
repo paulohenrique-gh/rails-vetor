@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_22_224112) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_24_001847) do
   create_table "answers", force: :cascade do |t|
     t.integer "participant_instrument_id", null: false
     t.integer "option_id", null: false
@@ -56,8 +56,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_22_224112) do
     t.date "date_of_birth", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "psychologist_id", null: false
     t.index ["cpf"], name: "index_participants_on_cpf", unique: true
     t.index ["email"], name: "index_participants_on_email", unique: true
+    t.index ["psychologist_id"], name: "index_participants_on_psychologist_id"
+  end
+
+  create_table "psychologists", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_psychologists_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_psychologists_on_reset_password_token", unique: true
   end
 
   create_table "questions", force: :cascade do |t|
@@ -73,5 +87,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_22_224112) do
   add_foreign_key "options", "questions"
   add_foreign_key "participant_instruments", "instruments"
   add_foreign_key "participant_instruments", "participants"
+  add_foreign_key "participants", "psychologists"
   add_foreign_key "questions", "instruments"
 end
