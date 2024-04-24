@@ -12,15 +12,16 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
-  vetor:
+  web:
     build: .
+    container_name: web
     command: "./bin/rails server -p 3000 -b '0.0.0.0'"
     environment:
-      - RAILS_ENV=${RAILS_ENV}
-      - POSTGRES_HOST=${POSTGRES_HOST}
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - RAILS_ENV=development
+      - POSTGRES_HOST=db
+      - POSTGRES_DB=vetor
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     volumes:
       - app-storage:/rails/storage
     depends_on:
