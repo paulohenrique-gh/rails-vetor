@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User assigns instrument to participant' do
+describe 'Psychologist assigns instrument to participant' do
   it 'and fails when participant does not exist' do
     psychologist = create(:psychologist)
     instrument_id = create(:instrument).id

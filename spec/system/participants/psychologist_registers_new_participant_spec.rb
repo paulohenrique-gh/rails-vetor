@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User registers new participants' do
+describe 'Psychologist registers new participants' do
   it 'from the home page' do
     psychologist = create(:psychologist)
 

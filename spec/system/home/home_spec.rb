@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Home page' do
-  it 'has appropriates links on the navbar when user is not logged in' do
+  it 'has appropriates links on the navbar when psychologist is not logged in' do
     visit root_path
 
     expect(page).not_to have_link 'Cadastrar novo avaliado'

@@ -1,8 +1,10 @@
 require 'rails_helper'
 
-describe 'User views intrument results page' do
+describe 'Psychologist views intrument results page' do
   it 'with finished status' do
-    participant = create(:participant)
+    psychologist = create(:psychologist)
+
+    participant = create(:participant, psychologist:)
     instrument = create(:instrument, name: 'Teste de Autoestima',
                                      description: 'Avalia autoestima do indivíduo')
 
@@ -46,6 +48,7 @@ describe 'User views intrument results page' do
     create(:answer, option: question4_2points, participant_instrument:)
     create(:answer, option: question5_3points, participant_instrument:)
 
+    login_as psychologist
     visit participant_path(participant)
     click_on 'Detalhes'
 

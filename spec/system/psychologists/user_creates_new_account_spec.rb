@@ -19,9 +19,11 @@ describe 'User creates new psychologist account' do
 
     visit root_path
 
-    fill_in 'E-mail', with: 'psicologo@email.com'
-    fill_in 'Senha', with: 'password'
-    click_on 'Entrar' 
+    within '#new_psychologist' do
+      fill_in 'E-mail', with: 'psicologo@email.com'
+      fill_in 'Senha', with: 'password'
+      click_on 'Entrar' 
+    end
 
     expect(page).to have_content 'Logado com sucesso.'
   end

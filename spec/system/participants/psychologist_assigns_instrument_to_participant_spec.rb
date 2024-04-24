@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User assigns instrument to participant' do
+describe 'Psychologist assigns instrument to participant' do
   it 'successfully' do
     psychologist = create(:psychologist)
 
