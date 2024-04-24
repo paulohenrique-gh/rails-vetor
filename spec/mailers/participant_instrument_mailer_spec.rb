@@ -15,7 +15,7 @@ RSpec.describe ParticipantInstrumentMailer, type: :mailer do
       expect(mail.to).to include participant.email
       expect(mail.body).to include 'Olá, <strong>Carlos Eduardo Batista</strong>'
       expect(mail.body).to include 'Você tem um novo questionário pendente.'
-      link = "http://localhost:3000#{participant_instrument_validation_path(participant_instrument)}"
+      link = "http://localhost:3000#{participant_instrument_questionnaire_path(participant_instrument)}"
       expect(mail.body).to include(
         "Clique <a href=\"#{link}\">aqui</a> para acessar."
       )
