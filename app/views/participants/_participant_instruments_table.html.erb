@@ -24,7 +24,7 @@
       <td class="text-end"><%= l(part_inst.created_at.to_date) %></td>
       <td class="text-end"><%= l(part_inst.finished_at.to_date) if part_inst.finished? %></td>
       <td class="text-end"><%= part_inst.score %></td>
-      <td class="text-end"><%= link_to 'Detalhes', participant_instrument_path(part_inst) %></td>
+      <td class="text-end"><%= link_to 'Detalhes', participant_instrument_results_path(part_inst) %></td>
     </tr>
   <% end %>
 </table>
