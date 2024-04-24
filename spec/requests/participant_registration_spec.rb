@@ -1,4 +1,4 @@
-require 'rails_helper' 
+require 'rails_helper'
 
 describe 'User tries to register participant' do
   it 'and fails if not logged in' do

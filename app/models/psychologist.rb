@@ -4,5 +4,5 @@ class Psychologist < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :participants
+  has_many :participants, dependent: :destroy
 end

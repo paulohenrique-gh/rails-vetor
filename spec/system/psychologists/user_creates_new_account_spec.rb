@@ -22,7 +22,7 @@ describe 'User creates new psychologist account' do
     within '#new_psychologist' do
       fill_in 'E-mail', with: 'psicologo@email.com'
       fill_in 'Senha', with: 'password'
-      click_on 'Entrar' 
+      click_on 'Entrar'
     end
 
     expect(page).to have_content 'Logado com sucesso.'
