@@ -1,4 +1,6 @@
 class AnswersController < ApplicationController
+  skip_before_action :authenticate_psychologist!, only: %i[create]
+
   QUESTION_INDEXES = %w[0 1 2 3 4].freeze
 
   def create

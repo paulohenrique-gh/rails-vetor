@@ -76,8 +76,8 @@ describe 'Home page' do
   end
 
   it 'cannot see other psychologists participants' do
-    psychologist1 = create(:psychologist, email: 'psycho1@email.com')
-    psychologist2 = create(:psychologist, email: 'psycho2@email.com')
+    psychologist1 = create(:psychologist)
+    psychologist2 = create(:psychologist)
 
     create(:participant, name: 'José Maria', cpf: '05298771041',
                          email: 'jm@email.com', psychologist: psychologist2)

@@ -2,8 +2,11 @@ require 'rails_helper'
 
 describe 'User views participant page' do
   it 'and the details are displayed' do
+    psychologist = create(:psychologist)
+
     participant = create(:participant, name: 'Mara Cristina Pereira', cpf: '414.298.400-48',
-                                       email: 'mara@email.com', date_of_birth: '1989-12-09')
+                                       email: 'mara@email.com', date_of_birth: '1989-12-09',
+                                       psychologist:)
 
     instrument_one = create(:instrument, name: 'Teste de Depressão',
                                          description: 'Avalia probalidade de depressão')
@@ -16,6 +19,7 @@ describe 'User views participant page' do
                                                 created_at: '2021-03-14', finished_at: '2021-03-17',
                                                 score: 8)
 
+    login_as psychologist
     visit root_path
     click_on 'Mara Cristina Pereira'
 
@@ -66,5 +70,17 @@ describe 'User views participant page' do
     visit participant_path(participant)
 
     expect(page).not_to have_selector 'form', text: 'Selecione um instrumento'
+  end
+
+  it 'and participant is associated with another psychologist' do
+    psychologist1 = create(:psychologist)
+    psychologist2 = create(:psychologist)
+
+    participant = create(:participant, psychologist: psychologist2)
+
+    login_as psychologist1
+    visit participant_path(participant)
+
+    expect(current_path).to eq root_path
   end
 end

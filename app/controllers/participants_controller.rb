@@ -1,5 +1,10 @@
 class ParticipantsController < ApplicationController
+  before_action :authorize, only: %i[show]
+
+  skip_before_action :authenticate_psychologist!, only: %i[validation validate_participant show]
+
   def show
+    # TODO: is participant here necessary? its already set in authorize
     @participant = Participant.find(params[:id])
     @options_for_new_instruments = Instrument.all
   end
@@ -10,6 +15,7 @@ class ParticipantsController < ApplicationController
 
   def create
     @participant = Participant.new(participant_params)
+    @participant.psychologist = current_psychologist
 
     return redirect_to @participant, notice: t('.success') if @participant.save
 
@@ -34,6 +40,11 @@ class ParticipantsController < ApplicationController
   end
 
   private
+
+  def authorize
+    @participant = Participant.find(params[:id])
+    redirect_to root_path unless @participant.psychologist == current_psychologist
+  end
 
   def participant_params
     params.require(:participant).permit(:name, :cpf, :email, :date_of_birth)

@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'User registers new participants' do
   it 'from the home page' do
+    psychologist = create(:psychologist)
+
+    login_as psychologist
     visit root_path
     within 'nav' do
       click_on 'Cadastrar novo avaliado'
@@ -18,6 +21,9 @@ describe 'User registers new participants' do
   end
 
   it 'and fails when fields are invalid or blank' do
+    psychologist = create(:psychologist)
+
+    login_as psychologist
     visit new_participant_path
 
     fill_in 'Nome', with: ''

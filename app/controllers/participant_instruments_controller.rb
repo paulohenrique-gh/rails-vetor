@@ -1,4 +1,6 @@
 class ParticipantInstrumentsController < ApplicationController
+  skip_before_action :authenticate_psychologist!, only: %i[show]
+
   def show
     @participant_instrument = ParticipantInstrument.find(params[:id])
   end

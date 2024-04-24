@@ -2,12 +2,15 @@ require 'rails_helper'
 
 describe 'User assigns instrument to participant' do
   it 'successfully' do
-    participant = create(:participant)
+    psychologist = create(:psychologist)
+
+    participant = create(:participant, psychologist:)
     create(:instrument, name: 'Teste de Depressão',
                         description: 'Avalia probabilidade de depressão no avaliado')
     create(:instrument, name: 'Teste de Ansiedade',
                         description: 'Avalia possibilidade de quadro ansioso')
 
+    login_as psychologist
     visit participant_path(participant)
     select 'Teste de Ansiedade', from: 'Instrumento'
     click_on 'Aplicar novo instrumento'
