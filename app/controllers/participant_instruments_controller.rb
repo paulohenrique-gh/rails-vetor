@@ -1,13 +1,5 @@
 class ParticipantInstrumentsController < ApplicationController
-  # TODO: remove show
-  before_action :authorize, only: %i[show create]
-
-  skip_before_action :authenticate_psychologist!, only: %i[show]
-
-  # TODO: delete action after refatoring to results controller
-  def show
-    @participant_instrument = ParticipantInstrument.find(params[:id])
-  end
+  before_action :authorize, only: %i[create]
 
   def create
     instrument = Instrument.find(params[:participant_instrument][:instrument_id])

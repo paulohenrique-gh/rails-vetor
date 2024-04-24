@@ -1,9 +1,7 @@
 class ResultsController < ApplicationController
   before_action :authorize, only: %i[show]
 
-  def show
-    @participant_instrument = ParticipantInstrument.find(params[:participant_instrument_id])
-  end
+  def show; end
 
   private
 
