@@ -11,9 +11,12 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_04_24_001847) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "answers", force: :cascade do |t|
-    t.integer "participant_instrument_id", null: false
-    t.integer "option_id", null: false
+    t.bigint "participant_instrument_id", null: false
+    t.bigint "option_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["option_id"], name: "index_answers_on_option_id"
@@ -30,7 +33,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_24_001847) do
   create_table "options", force: :cascade do |t|
     t.text "description", null: false
     t.integer "weight", null: false
-    t.integer "question_id", null: false
+    t.bigint "question_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_options_on_question_id"
@@ -38,8 +41,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_24_001847) do
   end
 
   create_table "participant_instruments", force: :cascade do |t|
-    t.integer "participant_id", null: false
-    t.integer "instrument_id", null: false
+    t.bigint "participant_id", null: false
+    t.bigint "instrument_id", null: false
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -56,7 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_24_001847) do
     t.date "date_of_birth", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "psychologist_id", null: false
+    t.bigint "psychologist_id", null: false
     t.index ["cpf"], name: "index_participants_on_cpf", unique: true
     t.index ["email"], name: "index_participants_on_email", unique: true
     t.index ["psychologist_id"], name: "index_participants_on_psychologist_id"
@@ -78,7 +81,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_24_001847) do
     t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "instrument_id", null: false
+    t.bigint "instrument_id", null: false
     t.index ["instrument_id"], name: "index_questions_on_instrument_id"
   end
 
