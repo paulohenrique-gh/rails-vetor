@@ -27,10 +27,6 @@ services:
       - db
     ports:
       - "3000:3000"
-  chrome-server:
-    image: selenium/standalone-chrome:96.0
-    ports:
-      - "7900:7900"
 
 volumes:
   postgres_data:
