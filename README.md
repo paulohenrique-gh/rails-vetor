@@ -30,17 +30,6 @@ Isso vai instalar todas as dependências necessárias, iniciar o banco de dados 
 
 Acesse a aplicação através do endereço http://localhost:3000
 
----
-
-Alternativamente, você pode iniciar a aplicação sem Docker. Para isso, é necessário ter instalados localmente Ruby 3.3.0, a gem [Bundler](https://bundler.io/), além do PostgreSQL, e executar os comandos:
-
-```shell
-bin/setup
-```
-```shell
-rails server
-```
-
 ## Testes
 
 Os testes foram escritos utilizando as gems [RSpec](https://github.com/rspec/rspec-rails) e [FactoryBot](https://github.com/thoughtbot/factory_bot_rails).
@@ -49,12 +38,6 @@ Para executar a suíte de testes, utilize o comando:
 ```shell
 docker exec web-vetor rspec
 ```
-
-Se estiver executando sem Docker:
-```shell
-rspec
-```
-
 Foi utilizada também a gem [SimpleCov](https://github.com/simplecov-ruby/simplecov) para monitorar a cobertura dos testes. A cobertura atual está em **100%**
 
 ![image](https://github.com/paulohenrique-gh/rails-vetor/assets/124916478/b8ecb136-73e1-4b15-b71f-d2c79a3d83ee)
