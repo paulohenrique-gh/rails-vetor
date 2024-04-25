@@ -11,7 +11,7 @@ class AnswersController < ApplicationController
       return render 'instruments/load_questionnaire', status: :bad_request
     end
 
-    Answer.save_answers(answers: answers_params, participant_instrument: @participant_instrument)
+    Answer.save_answers(options: options_from_params, participant_instrument: @participant_instrument)
     clear_session
 
     redirect_to instrument_completion_path
@@ -25,6 +25,10 @@ class AnswersController < ApplicationController
 
   def answers_params
     params[:answers].permit(QUESTION_INDEXES.map { |index| { index => [:option_id] } })
+  end
+
+  def options_from_params
+    Option.find(answers_params.values.map { |a| a[:option_id] })
   end
 
   def clear_session

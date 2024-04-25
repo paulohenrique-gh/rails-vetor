@@ -6,11 +6,15 @@ class Answer < ApplicationRecord
 
   delegate :weight, to: :option
 
-  def self.save_answers(answers:, participant_instrument:)
-    answers.each_value do |answer|
-      option = Option.find(answer[:option_id])
+  def self.save_answers(options:, participant_instrument:)
+    options.each do |option|
       create!(option:, participant_instrument:)
     end
+
+    # answers.each_value do |answer|
+    #   option = Option.find(answer[:option_id])
+    #   create!(option:, participant_instrument:)
+    # end
 
     participant_instrument.compute_score
   end

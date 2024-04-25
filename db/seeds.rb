@@ -281,9 +281,13 @@ participant3 = Participant.create!(name: 'Sheila Rita das Neves', cpf: '77487199
 
 psychologist.participants.each do |participant|
   random_instrument = Instrument.all.sample
-  participant_instrument = participant.participant_instruments.create!(instrument: random_instrument,
-                                                                       status: :finished)
-  participant_instrument.questions.each do |question|
+  participant_instrument = participant
+                           .participant_instruments
+                           .create!(instrument: random_instrument,
+                                    status: :finished, finished_at: Time.zone.now)
+  answers = participant_instrument.questions.map do |question|
     participant_instrument.answers.create!(option: question.options.sample)
   end
+
+  Answer.save_answers(answers:, participant_instrument:)
 end
