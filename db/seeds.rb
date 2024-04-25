@@ -270,3 +270,20 @@ rescue StandardError => e
   Instrument.destroy_all if Instrument.any?
   puts "Aborted: #{e}"
 end
+
+psychologist = Psychologist.create!(email: 'user@email.com', password: 'password')
+participant1 = Participant.create!(name: 'João Carlos Batista', cpf: '13650579090',
+                                   email: 'jcbatista@email.com', date_of_birth: '1980-12-01', psychologist:)
+participant2 = Participant.create!(name: 'Milena Alves', cpf: '81196899096',
+                                   email: 'milena@email.com', date_of_birth: '1993-04-25', psychologist:)
+participant3 = Participant.create!(name: 'Sheila Rita das Neves', cpf: '77487199002',
+                                   email: 'sheila@email.com', date_of_birth: '1999-07-13', psychologist:)
+
+psychologist.participants.each do |participant|
+  random_instrument = Instrument.all.sample
+  participant_instrument = participant.participant_instruments.create!(instrument: random_instrument,
+                                                                       status: :finished)
+  participant_instrument.questions.each do |question|
+    participant_instrument.answers.create!(option: question.options.sample)
+  end
+end
