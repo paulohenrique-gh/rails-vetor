@@ -24,4 +24,6 @@ RSpec.describe Instrument, type: :model do
       expect(instrument.errors).to be_empty
     end
   end
+
+  # TODO: guarantee each instrument only has 5 options
 end
