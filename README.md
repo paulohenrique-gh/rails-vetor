@@ -47,7 +47,7 @@ Os testes foram escritos utilizando as gems [RSpec](https://github.com/rspec/rsp
 
 Para executar a suíte de testes, utilize o comando:
 ```shell
-docker exec web rspec
+docker exec web-vetor rspec
 ```
 
 Se estiver executando sem Docker:
