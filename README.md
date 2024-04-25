@@ -63,11 +63,24 @@ Foi utilizado o dbdocs para documentar o schema do banco de dados nos links abai
 
 ## Funcionalidades
 
+A aplicação inicia com dados pré-cadastrados. Você pode testar as funcionalidades utilizando os dados abaixo: 
+Psicólogo:
+    - E-mail: user@email.com
+    - Senha: password
+Esse usuário já possui 3 avaliados cadastrados, cada um com um instrumento finalizado e outro pendente.
+
+Se quiser cadastrar outro avaliado, pode usar os dados fictícios abaixo:
+Novo avaliado:
+    - Nome: Sasha Levy
+    - CPF: 30902403001
+    - E-mail: waravor@mailinator.com
+    - Data de nascimento: 13/05/1975
+
+Link para visualização do e-mail enviado ao atribuir instrumento: http://localhost:3000/rails/mailers/participant_instrument_mailer/notify_participant 
+
 ### Autenticação
 
 O psicólogo se cadastra na plataforma informando e-mail e senha.
-
-Foi utilizada a gem [cpf_cnpj](https://github.com/fnando/cpf_cnpj) para ajudar na validação e permitir somente CPF válido. Para gerar CPF fictício válido, recomenda-se o site https://www.4devs.com.br/gerador_de_cpf.
 
 Depois disso, o psicólogo consegue fazer o login e utilizar o restante das funcionalidades
 
@@ -77,7 +90,9 @@ Depois disso, o psicólogo consegue fazer o login e utilizar o restante das func
 
 Rota: `participants/new`
 
-O psicólogo autenticado consegue cadastrar avaliado informando nome, cpf, e-mail e data de nascimento, a partir de link na página inicial ou na navbar
+O psicólogo autenticado consegue cadastrar avaliado informando nome, cpf, e-mail e data de nascimento, a partir de link na página inicial ou na navbar.
+
+Foi utilizada a gem [cpf_cnpj](https://github.com/fnando/cpf_cnpj) para ajudar na validação e permitir somente CPF válido. Para gerar CPF fictício válido, recomenda-se o site https://www.4devs.com.br/gerador_de_cpf.
 
 ![image](https://github.com/paulohenrique-gh/rails-vetor/assets/124916478/f1f382f6-d33e-4ecd-a2e0-7ff9c973f2bb)
 
@@ -110,7 +125,7 @@ A aplicação foi configurada para carregar uma prévia do e-mail enviado para o
 
 Rota da validação: `participant_instruments/:participant_instrument_id/validation`
 
-Ao clicar no link recebido, o avaliado é direcionado para a página de validação se os dados ainda não tiverem sido preenchidos. Se os dados já tiverem sido confirmados, o avaliado é direcionado para a página com as questões do instrumento.
+Ao clicar no link recebido, o avaliado é direcionado para a página de validação se os dados ainda não tiverem sido preenchidos. Após preenchimento dos dados, o avaliado é direcionado para a página com as questões do instrumento.
 
 ![image](https://github.com/paulohenrique-gh/rails-vetor/assets/124916478/14fe412d-fb52-409b-877c-0ac1dd0b2205)
 
@@ -128,7 +143,7 @@ O resultado do instrumento fica disponível somente para o psicólogo.
 
 Rota da página de resultados: `participant_instruments/:participant_instrument_id/results`
 
-A partir do link "Detalhes" correspondente a de instrumento da página de um avaliado, o psicólogo autenticado tem acesso à página com os resultados do instrumento.
+A partir do link "Detalhes" correspondente a um instrumento na página de um avaliado, o psicólogo autenticado tem acesso à página com os resultados do instrumento.
 A página tem um resumo das informações do instrumento, a pontuação total, as questões do instrumento e as respostas do avaliado.
 
 ![image](https://github.com/paulohenrique-gh/rails-vetor/assets/124916478/8d9b297f-2926-465d-85eb-eab01e622ebb)
