@@ -11,11 +11,6 @@ class Answer < ApplicationRecord
       create!(option:, participant_instrument:)
     end
 
-    # answers.each_value do |answer|
-    #   option = Option.find(answer[:option_id])
-    #   create!(option:, participant_instrument:)
-    # end
-
     participant_instrument.compute_score
   end
 end

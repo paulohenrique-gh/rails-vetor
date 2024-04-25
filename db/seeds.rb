@@ -7,6 +7,30 @@ def create_questionnaire(instrument, questions_and_options)
   end
 end
 
+def random_instrument
+  Instrument.all.sample
+end
+
+def assign_new_instrument(participant)
+  participant.participant_instruments.create!(instrument: random_instrument)
+end
+
+def generate_selected_options(assigned_instrument)
+  assigned_instrument.questions.map { |question| question.options.sample }
+end
+
+def answer_questions(assigned_instrument)
+  selected_options = generate_selected_options(assigned_instrument)
+  Answer.save_answers(options: selected_options, participant_instrument: assigned_instrument)
+end
+
+def assign_instruments(participant)
+  finished_instrument = assign_new_instrument(participant)
+  answer_questions(finished_instrument)
+
+  assign_new_instrument(participant)
+end
+
 begin
   depression = { instrument: Instrument.create!(name: 'Teste de Depressão',
                                                 description: 'Avalia probalidade de depressão') }
@@ -279,15 +303,4 @@ participant2 = Participant.create!(name: 'Milena Alves', cpf: '81196899096',
 participant3 = Participant.create!(name: 'Sheila Rita das Neves', cpf: '77487199002',
                                    email: 'sheila@email.com', date_of_birth: '1999-07-13', psychologist:)
 
-psychologist.participants.each do |participant|
-  random_instrument = Instrument.all.sample
-  participant_instrument = participant
-                           .participant_instruments
-                           .create!(instrument: random_instrument,
-                                    status: :finished, finished_at: Time.zone.now)
-  answers = participant_instrument.questions.map do |question|
-    participant_instrument.answers.create!(option: question.options.sample)
-  end
-
-  Answer.save_answers(answers:, participant_instrument:)
-end
+psychologist.participants.each { |participant| assign_instruments(participant) }
