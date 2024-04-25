@@ -26,7 +26,7 @@ Com o [Docker](https://www.docker.com/get-started/) instalado, execute o comando
 ```shell
 docker compose up
 ```
-Isso vai instalar todas as dependências necessárias e iniciar o servidor na porta 3000
+Isso vai instalar todas as dependências necessárias, iniciar o banco de dados e servir a aplicação na porta 3000
 
 Acesse a aplicação através do endereço http://localhost:3000
 
@@ -71,7 +71,10 @@ Os dados foram modelados de acordo com o diagrama abaixo.
 - `option`: Representa uma opção de uma questão
 - `answer`: Representa a resposta do avaliado a uma questão
 
-Foi utilizado o dbdocs para documentar o schema do banco de dados. Você pode visualizar neste link: https://dbdocs.io/phenrique.menoli/Vetor
+Foi utilizado o dbdocs para documentar o schema do banco de dados nos links abaixo:
+
+- https://dbdiagram.io/d/Vetort-b-6625216503593b6b618cf40a
+- https://dbdocs.io/phenrique.menoli/Vetor
 
 ![image](https://github.com/paulohenrique-gh/rails-vetor/assets/124916478/d741f994-9b3c-4132-90f0-4032613aa22b)
 
