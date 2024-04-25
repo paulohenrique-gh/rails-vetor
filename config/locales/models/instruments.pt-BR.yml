@@ -9,7 +9,6 @@ pt-BR:
         name: Nome
         description: Descrição
   instruments:
-    participant_not_validated: Dados não validados
     already_submitted: Questionário já submetido
   assign: Aplicar
   save: Salvar

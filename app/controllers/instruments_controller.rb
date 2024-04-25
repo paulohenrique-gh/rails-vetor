@@ -4,8 +4,7 @@ class InstrumentsController < ApplicationController
   def load_questionnaire
     unless participant_validated?
       # TODO: remove flash massage?
-      return redirect_to participant_instrument_validation_path(params[:participant_instrument_id]),
-                         alert: t('.participant_not_validated')
+      return redirect_to participant_instrument_validation_path(params[:participant_instrument_id])
     end
 
     @participant_instrument = ParticipantInstrument.find(params[:participant_instrument_id])
