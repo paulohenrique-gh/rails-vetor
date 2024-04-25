@@ -18,15 +18,15 @@ RSpec.describe Answer, type: :model do
       selected_option_for_question4 = create(:option, question: question4, weight: 1)
       selected_option_for_question5 = create(:option, question: question5, weight: 3)
 
-      answers_params = {
-        question1: { option_id: selected_option_for_question1.id },
-        question2: { option_id: selected_option_for_question2.id },
-        question3: { option_id: selected_option_for_question3.id },
-        question4: { option_id: selected_option_for_question4.id },
-        question5: { option_id: selected_option_for_question5.id }
-      }
+      selected_options = [
+        selected_option_for_question1,
+        selected_option_for_question2,
+        selected_option_for_question3,
+        selected_option_for_question4,
+        selected_option_for_question5
+      ]
 
-      Answer.save_answers(answers: answers_params, participant_instrument:)
+      Answer.save_answers(options: selected_options, participant_instrument:)
 
       expect(participant_instrument.answers.count).to eq 5
     end

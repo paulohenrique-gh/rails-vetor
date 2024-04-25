@@ -43,6 +43,7 @@ describe 'Participant accesses instrument link' do
 
     visit participant_instrument_questionnaire_path(participant_instrument)
 
+    # TODO: remove this after removing flash message
     expect(page).to have_content 'Dados não validados'
     expect(current_path).to eq participant_instrument_validation_path(participant_instrument)
   end
