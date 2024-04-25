@@ -3,20 +3,19 @@ class InstrumentsController < ApplicationController
 
   def load_questionnaire
     unless participant_validated?
-      # TODO: remove flash massage?
       return redirect_to participant_instrument_validation_path(params[:participant_instrument_id])
     end
 
     @participant_instrument = ParticipantInstrument.find(params[:participant_instrument_id])
-    validate_status
+    redirect_finished_instrument
   end
 
   def completion; end
 
   private
 
-  def validate_status
-    return unless @participant_instrument.finished?
+  def redirect_finished_instrument
+    return if @participant_instrument.pending?
 
     redirect_to instrument_completion_path, notice: t('.already_submitted')
   end

@@ -26,4 +26,12 @@ RSpec.describe Instrument, type: :model do
   end
 
   # TODO: guarantee each instrument only has 5 options
+  it 'number of questions cannot exceed Instrument::MAX_QUESTIONS' do
+    instrument = create(:instrument) 
+
+    Instrument::MAX_QUESTIONS.times { create(:question, instrument:) }
+    expect { instrument.questions.create!(description: 'Questão excedente') }
+      .to raise_error Instrument::QuestionsLimitExceeded
+    expect(instrument.questions.count).to eq Instrument::MAX_QUESTIONS
+  end
 end
