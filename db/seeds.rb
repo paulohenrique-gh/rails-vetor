@@ -290,17 +290,18 @@ begin
   instrument_hashes = [depression, anxiety, emotional_intelligence, empathy, stress_level]
 
   instrument_hashes.each { |i| create_questionnaire(i[:instrument], i[:questions_and_options]) }
+
+  psychologist = Psychologist.create!(email: 'user@email.com', password: 'password')
+  psychologist.participants.create!(name: 'João Carlos Batista', cpf: '13650579090',
+                                    email: 'jcbatista@email.com', date_of_birth: '1980-12-01')
+  psychologist.participants.create!(name: 'Milena Alves', cpf: '81196899096',
+                                    email: 'milena@email.com', date_of_birth: '1993-04-25')
+  psychologist.participants.create!(name: 'Sheila Rita das Neves', cpf: '77487199002',
+                                    email: 'sheila@email.com', date_of_birth: '1999-07-13')
+
+  psychologist.participants.each { |participant| assign_instruments(participant) }
 rescue StandardError => e
   Instrument.destroy_all if Instrument.any?
+  Psychologist.destroy_all if Psychologist.any?
   puts "Aborted: #{e}"
 end
-
-psychologist = Psychologist.create!(email: 'user@email.com', password: 'password')
-participant1 = Participant.create!(name: 'João Carlos Batista', cpf: '13650579090',
-                                   email: 'jcbatista@email.com', date_of_birth: '1980-12-01', psychologist:)
-participant2 = Participant.create!(name: 'Milena Alves', cpf: '81196899096',
-                                   email: 'milena@email.com', date_of_birth: '1993-04-25', psychologist:)
-participant3 = Participant.create!(name: 'Sheila Rita das Neves', cpf: '77487199002',
-                                   email: 'sheila@email.com', date_of_birth: '1999-07-13', psychologist:)
-
-psychologist.participants.each { |participant| assign_instruments(participant) }
