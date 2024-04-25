@@ -7,12 +7,12 @@ def create_questionnaire(instrument, questions_and_options)
   end
 end
 
-depression = Instrument.create!(name: 'Teste de Depressão',
-                                description: 'Avalia probalidade de depressão')
-anxiety = Instrument.create!(name: 'Teste de Ansiedade Geral',
-                             description: 'Avalia possibilidade de quadro ansioso')
-emotional_intelligence = Instrument.create!(name: 'Inteligência Emocional',
-                                            description: 'Avalia capacidade de reconhecer, interpretar e lidar com emoções')
+depression = { instrument: Instrument.create!(name: 'Teste de Depressão',
+                                              description: 'Avalia probalidade de depressão') }
+anxiety = { instrument: Instrument.create!(name: 'Teste de Ansiedade Geral',
+                                           description: 'Avalia possibilidade de quadro ansioso') }
+emotional_intelligence = { instrument: Instrument.create!(name: 'Inteligência Emocional',
+                                                          description: 'Avalia capacidade de reconhecer, interpretar e lidar com emoções') }
 
 depression_questions_and_options = [
   {
@@ -61,6 +61,7 @@ depression_questions_and_options = [
     ]
   }
 ]
+depression[:questions_and_options] = depression_questions_and_options
 
 anxiety_questions_and_options = [
   {
@@ -109,6 +110,7 @@ anxiety_questions_and_options = [
     ]
   }
 ]
+anxiety[:questions_and_options] = anxiety_questions_and_options
 
 emotional_intelligence_questions_and_options = [
   {
@@ -157,7 +159,8 @@ emotional_intelligence_questions_and_options = [
     ]
   }
 ]
+emotional_intelligence[:questions_and_options] = emotional_intelligence_questions_and_options
 
-create_questionnaire(depression, depression_questions_and_options)
-create_questionnaire(anxiety, anxiety_questions_and_options)
-create_questionnaire(emotional_intelligence, emotional_intelligence_questions_and_options)
+instruments_hash = [depression, anxiety, emotional_intelligence]
+
+instruments_hash.each { |i| create_questionnaire(i[:instrument], i[:questions_and_options]) }
