@@ -32,7 +32,7 @@ Acesse a aplicação através do endereço http://localhost:3000
 
 ---
 
-Alternativamente, você pode iniciar a aplicação sem Docker. Para isso, é necessário ter instalados localmente Ruby 3.3.0, além do PostgreSQL, e executar os comandos:
+Alternativamente, você pode iniciar a aplicação sem Docker. Para isso, é necessário ter instalados localmente Ruby 3.3.0, a gem [Bundler](https://bundler.io/), além do PostgreSQL, e executar os comandos:
 
 ```shell
 bin/setup
