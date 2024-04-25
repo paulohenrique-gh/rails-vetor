@@ -64,13 +64,18 @@ Foi utilizado o dbdocs para documentar o schema do banco de dados nos links abai
 ## Funcionalidades
 
 A aplicação inicia com dados pré-cadastrados. Você pode testar as funcionalidades utilizando os dados abaixo: 
+
 Psicólogo:
+
     - E-mail: user@email.com
     - Senha: password
+
 Esse usuário já possui 3 avaliados cadastrados, cada um com um instrumento finalizado e outro pendente.
 
 Se quiser cadastrar outro avaliado, pode usar os dados fictícios abaixo:
+
 Novo avaliado:
+
     - Nome: Sasha Levy
     - CPF: 30902403001
     - E-mail: waravor@mailinator.com
