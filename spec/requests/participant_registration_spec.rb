@@ -19,7 +19,7 @@ describe 'User tries to register participant' do
     expect(Participant.count).to eq 0
   end
 
-  it 'and fails when associated with other psychologist' do
+  it 'and cannot associate participant to another psychologist' do
     psychologist1 = create(:psychologist)
     psychologist2 = create(:psychologist)
     participant_params = {

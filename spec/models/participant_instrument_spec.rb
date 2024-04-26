@@ -29,12 +29,13 @@ RSpec.describe ParticipantInstrument, type: :model do
   end
 
   context '#finished!' do
-    it 'updates status when score is not nil' do
+    it 'updates status when score is present' do
       participant_instrument = create(:participant_instrument, score: 8, status: :pending)
 
       participant_instrument.finished!
 
       expect(participant_instrument.status).to eq 'finished'
+      expect(participant_instrument.finished_at).not_to be_nil
     end
 
     it 'does not update status when score is nil' do
@@ -43,15 +44,7 @@ RSpec.describe ParticipantInstrument, type: :model do
       participant_instrument.finished!
 
       expect(participant_instrument.status).to eq 'pending'
-    end
-
-    it 'updates finished_at attribute with current time' do
-      participant_instrument = create(:participant_instrument,
-                                      score: 7, status: :pending, finished_at: nil)
-
-      participant_instrument.finished!
-
-      expect(participant_instrument.reload.finished_at).not_to be_nil
+      expect(participant_instrument.finished_at).to be_nil
     end
   end
 

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Psychologist tries to access instrument results' do
-  it 'and participant is associated with another psychologist' do
+  it 'and fails if participant is associated with another psychologist' do
     psychologist1 = create(:psychologist)
     psychologist2 = create(:psychologist)
 

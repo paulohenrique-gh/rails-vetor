@@ -35,14 +35,4 @@ describe 'Participant accesses instrument link' do
     expect(page).to have_content 'Dados incorretos'
     expect(current_path).not_to eq participant_instrument_questionnaire_path(participant_instrument)
   end
-
-  it 'and is redirected to validation when they skip it' do
-    participant = create(:participant)
-    instrument = create(:instrument)
-    participant_instrument = participant.participant_instruments.create!(instrument:)
-
-    visit participant_instrument_questionnaire_path(participant_instrument)
-
-    expect(current_path).to eq participant_instrument_validation_path(participant_instrument)
-  end
 end

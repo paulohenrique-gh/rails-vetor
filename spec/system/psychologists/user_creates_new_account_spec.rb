@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User creates new psychologist account' do
+describe 'Visitor creates new psychologist account' do
   it 'after trying to access home page' do
     visit root_path
     click_on 'Criar conta'

@@ -7,9 +7,7 @@ class Answer < ApplicationRecord
   delegate :weight, to: :option
 
   def self.save_answers(options:, participant_instrument:)
-    options.each do |option|
-      create!(option:, participant_instrument:)
-    end
+    options.each { |option| create!(option:, participant_instrument:) }
 
     participant_instrument.compute_score
   end

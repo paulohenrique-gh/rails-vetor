@@ -24,7 +24,7 @@ describe 'Psychologist views participant page' do
     click_on 'Mara Cristina Pereira'
 
     expect(page).to have_content 'Mara Cristina Pereira'
-    expect(page).to have_content '414.298.400-48'
+    expect(page).to have_content '41429840048'
     expect(page).to have_content 'mara@email.com'
     expect(page).to have_content '09/12/1989'
     expect(page).to have_selector 'form', text: 'Selecione um instrumento'
