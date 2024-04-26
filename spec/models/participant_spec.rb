@@ -80,7 +80,7 @@ RSpec.describe Participant, type: :model do
   context '#valid_data?' do
     it 'returns false when data submitted is correct' do
       incorrect_data = { name: 'Carlos Barbosa', cpf: '00099988877',
-                       email: 'carlos@email.com', date_of_birth: '20/11/1989' }
+                         email: 'carlos@email.com', date_of_birth: '20/11/1989' }
       participant = build(:participant, name: 'Luiz Daniel', cpf: '59551881001',
                                         email: 'luiz@email.com', date_of_birth: '14/04/2001')
 
@@ -91,7 +91,7 @@ RSpec.describe Participant, type: :model do
 
     it 'returns true when data is valid' do
       correct_data = { name: 'LUIZ DANIEL', cpf: '595.518.810-01',
-                     email: 'luiz@email.com', date_of_birth: '14/04/2001' }
+                       email: 'luiz@email.com', date_of_birth: '14/04/2001' }
       participant = build(:participant, name: 'Luiz Daniel', cpf: '59551881001',
                                         email: 'luiz@email.com', date_of_birth: '14/04/2001')
 

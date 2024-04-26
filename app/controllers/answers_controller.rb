@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   skip_before_action :authenticate_psychologist!, only: %i[create]
 
-  QUESTION_INDEXES = (0...Instrument::MAX_QUESTIONS).to_a.map { |i| i.to_s }
+  QUESTION_INDEXES = (0...Instrument::MAX_QUESTIONS).to_a.map(&:to_s)
 
   def create
     @participant_instrument = ParticipantInstrument.find(params[:participant_instrument_id])

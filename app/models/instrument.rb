@@ -11,6 +11,6 @@ class Instrument < ApplicationRecord
   private
 
   def check_questions_limit(_question)
-    raise QuestionsLimitExceeded if questions.count >= MAX_QUESTIONS 
+    raise QuestionsLimitExceeded if questions.count >= MAX_QUESTIONS
   end
 end

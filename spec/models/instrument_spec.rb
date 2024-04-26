@@ -26,7 +26,7 @@ RSpec.describe Instrument, type: :model do
   end
 
   it 'number of questions cannot exceed Instrument::MAX_QUESTIONS' do
-    instrument = create(:instrument) 
+    instrument = create(:instrument)
 
     Instrument::MAX_QUESTIONS.times { create(:question, instrument:) }
 

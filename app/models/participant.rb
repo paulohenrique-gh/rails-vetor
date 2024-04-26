@@ -46,6 +46,4 @@ class Participant < ApplicationRecord
   def same_date_of_birth?(date_of_birth_to_compare)
     date_of_birth.to_date == date_of_birth_to_compare.to_date
   end
-
-  # TODO: sanitize cpf
 end
