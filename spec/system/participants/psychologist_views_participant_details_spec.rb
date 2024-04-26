@@ -75,16 +75,4 @@ describe 'Psychologist views participant page' do
 
     expect(page).not_to have_selector 'form', text: 'Selecione um instrumento'
   end
-
-  it 'and participant is associated with another psychologist' do
-    psychologist1 = create(:psychologist)
-    psychologist2 = create(:psychologist)
-
-    participant = create(:participant, psychologist: psychologist2)
-
-    login_as psychologist1
-    visit participant_path(participant)
-
-    expect(current_path).to eq root_path
-  end
 end

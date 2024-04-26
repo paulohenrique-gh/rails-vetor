@@ -24,7 +24,7 @@ class AnswersController < ApplicationController
   end
 
   def answers_params
-    params[:answers].permit(QUESTION_INDEXES.map { |index| { index => [:option_id] } })
+    params[:answers].permit(QUESTION_INDEXES.map { |index| { index => :option_id } })
   end
 
   def options_from_params
