@@ -1,7 +1,7 @@
 <%= render partial: 'participants/participant',
            locals: { participant: @participant_instrument.participant } %>
 
-<%= form_with(url: participant_instrument_submit_path(@participant_instrument.id),
+<%= form_with(url: participant_instrument_submit_path(@participant_instrument),
               method: :post, class: 'w-50') do |f| %>
   <% @participant_instrument.questions.each_with_index do |q, i| %>
     <div id="question<%= i + 1 %>" class="card p-3 m-auto mb-3">

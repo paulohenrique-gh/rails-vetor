@@ -23,15 +23,15 @@ RSpec.describe Option, type: :model do
       expect(option.errors).to include :question
     end
 
-    it 'returns false when weight is more than 3' do
-      option = build(:option, weight: 5)
+    it 'returns false when weight exceeds Option::WEIGHT_RANGE' do
+      option = build(:option, weight: Option::WEIGHT_RANGE.last + 1)
 
       expect(option.valid?).to eq false
       expect(option.errors).to include :weight
     end
 
-    it 'returns false when weight is less than 0' do
-      option = build(:option, weight: -3)
+    it 'returns false when weight is less than Option::WEIGHT_RANGE' do
+      option = build(:option, weight: Option::WEIGHT_RANGE.first - 1)
 
       expect(option.valid?).to eq false
       expect(option.errors).to include :weight

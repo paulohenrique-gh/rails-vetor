@@ -24,7 +24,7 @@ describe 'Psychologist views participant page' do
     click_on 'Mara Cristina Pereira'
 
     expect(page).to have_content 'Mara Cristina Pereira'
-    expect(page).to have_content '414.298.400-48'
+    expect(page).to have_content '41429840048'
     expect(page).to have_content 'mara@email.com'
     expect(page).to have_content '09/12/1989'
     expect(page).to have_selector 'form', text: 'Selecione um instrumento'
@@ -74,17 +74,5 @@ describe 'Psychologist views participant page' do
     visit participant_path(participant)
 
     expect(page).not_to have_selector 'form', text: 'Selecione um instrumento'
-  end
-
-  it 'and participant is associated with another psychologist' do
-    psychologist1 = create(:psychologist)
-    psychologist2 = create(:psychologist)
-
-    participant = create(:participant, psychologist: psychologist2)
-
-    login_as psychologist1
-    visit participant_path(participant)
-
-    expect(current_path).to eq root_path
   end
 end

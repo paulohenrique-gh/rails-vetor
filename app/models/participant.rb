@@ -4,11 +4,13 @@ class Participant < ApplicationRecord
   has_many :participant_instruments, dependent: :destroy
   has_many :instruments, through: :participant_instruments
 
+  before_validation :sanitize_cpf
+
+  validate :validate_cpf
+
   validates :name, :cpf, :email, :date_of_birth, presence: true
   validates :cpf, :email, uniqueness: true
   validates :email, format: URI::MailTo::EMAIL_REGEXP
-
-  validate :validate_cpf
 
   def valid_data?(data)
     symbolized_data = data.to_h.symbolize_keys
@@ -20,6 +22,10 @@ class Participant < ApplicationRecord
   end
 
   private
+
+  def sanitize_cpf
+    cpf.gsub!(/[^\d]/, '')
+  end
 
   def validate_cpf
     errors.add(:cpf, I18n.t(:invalid_cpf)) unless cpf.blank? || CPF.valid?(cpf)

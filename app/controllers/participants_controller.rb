@@ -1,7 +1,7 @@
 class ParticipantsController < ApplicationController
   before_action :authorize, only: %i[show]
 
-  skip_before_action :authenticate_psychologist!, only: %i[validation validate_participant show]
+  skip_before_action :authenticate_psychologist!, only: %i[validation validate_participant]
 
   def show
     @options_for_new_instruments = Instrument.all
@@ -12,8 +12,7 @@ class ParticipantsController < ApplicationController
   end
 
   def create
-    @participant = Participant.new(participant_params)
-    @participant.psychologist = current_psychologist
+    @participant = current_psychologist.participants.build(participant_params)
 
     return redirect_to @participant, notice: t('.success') if @participant.save
 

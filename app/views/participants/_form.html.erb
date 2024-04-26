@@ -1,0 +1,36 @@
+<%= form_with(model: participant, url:, class: 'w-25') do |f| %>
+  <div class="d-flex flex-column mb-3">
+    <%= f.label :name, class: 'form-label' %>
+    <%= f.text_field :name,
+      required: true,
+      placeholder: 'ex.: José Maria dos Santos',
+      class: 'form-control' %>
+  </div>
+
+  <div class="d-flex flex-column mb-3">
+    <%= f.label :cpf, class: 'form-label' %>
+    <%= f.text_field :cpf,
+      required: true,
+      placeholder: 'ex.: 01234567890',
+      class: 'form-control' %>
+  </div>
+
+  <div class="d-flex flex-column mb-3">
+    <%= f.label :email, class: 'form-label' %>
+    <%= f.email_field :email,
+      required: true,
+      placeholder: 'ex.: exemplo@email.com',
+      class: 'form-control' %>
+  </div>
+
+  <div class="d-flex flex-column mb-3">
+    <%= f.label :date_of_birth, class: 'form-label' %>
+    <%= f.date_field :date_of_birth,
+      required: true,
+      class: 'form-control' %>
+  </div>
+
+  <div class="text-center">
+    <%= f.submit btn_text, class: 'btn btn-primary' %>
+  </div>
+<% end %>

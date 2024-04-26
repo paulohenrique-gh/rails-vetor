@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   skip_before_action :authenticate_psychologist!, only: %i[create]
 
-  QUESTION_INDEXES = %w[0 1 2 3 4].freeze
+  QUESTION_INDEXES = (0...Instrument::MAX_QUESTIONS).to_a.map(&:to_s)
 
   def create
     @participant_instrument = ParticipantInstrument.find(params[:participant_instrument_id])
@@ -24,7 +24,7 @@ class AnswersController < ApplicationController
   end
 
   def answers_params
-    params[:answers].permit(QUESTION_INDEXES.map { |index| { index => [:option_id] } })
+    params[:answers].permit(QUESTION_INDEXES.map { |index| { index => :option_id } })
   end
 
   def options_from_params

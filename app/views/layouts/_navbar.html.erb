@@ -10,7 +10,7 @@
         <%= button_to t(:log_out), destroy_psychologist_session_path, method: :delete, class: 'btn btn-danger' %>
       </div>
     <% else %>
-      <%= link_to 'Entrar', new_psychologist_session_path %>
+      <%= link_to t(:log_in), new_psychologist_session_path %>
     <% end %>
   </div>
 </nav>

@@ -32,7 +32,7 @@ RSpec.describe Participant, type: :model do
 
     it 'returns false when cpf already exists in the database' do
       create(:participant, email: 'email@mail.com', cpf: '934.681.720-87')
-      new_participant = build(:participant, email: 'diferente@mail.com', cpf: '934.681.720-87')
+      new_participant = build(:participant, email: 'diferente@mail.com', cpf: '93468172087')
 
       expect(new_participant.valid?).to be false
       expect(new_participant.errors).to include :cpf
@@ -67,27 +67,35 @@ RSpec.describe Participant, type: :model do
       expect(participant.valid?).to be true
       expect(participant.errors).to be_empty
     end
+
+    it 'removes non-digit characters from cpf' do
+      participant = build(:participant, cpf: '163.375.600-94')
+
+      participant.valid?
+
+      expect(participant.cpf).to eq '16337560094'
+    end
   end
 
   context '#valid_data?' do
-    it 'returns false when data submitted is invalid' do
-      invalid_data = { name: 'Carlos Barbosa', cpf: '00099988877',
-                       email: 'carlos@email.com', date_of_birth: '20/11/1989' }
+    it 'returns false when data submitted is correct' do
+      incorrect_data = { name: 'Carlos Barbosa', cpf: '00099988877',
+                         email: 'carlos@email.com', date_of_birth: '20/11/1989' }
       participant = build(:participant, name: 'Luiz Daniel', cpf: '59551881001',
                                         email: 'luiz@email.com', date_of_birth: '14/04/2001')
 
-      result = participant.valid_data?(invalid_data)
+      result = participant.valid_data?(incorrect_data)
 
       expect(result).to be false
     end
 
-    it 'returns true when data is the valid' do
-      valid_data = { name: 'LUIZ DANIEL', cpf: '595.518.810-01',
-                     email: 'luiz@email.com', date_of_birth: '14/04/2001' }
+    it 'returns true when data is valid' do
+      correct_data = { name: 'LUIZ DANIEL', cpf: '595.518.810-01',
+                       email: 'luiz@email.com', date_of_birth: '14/04/2001' }
       participant = build(:participant, name: 'Luiz Daniel', cpf: '59551881001',
                                         email: 'luiz@email.com', date_of_birth: '14/04/2001')
 
-      result = participant.valid_data?(valid_data)
+      result = participant.valid_data?(correct_data)
 
       expect(result).to be true
     end
