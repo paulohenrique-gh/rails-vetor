@@ -1,5 +1,6 @@
 class Instrument < ApplicationRecord
   class QuestionsLimitExceeded < ActiveRecord::ActiveRecordError; end
+
   MAX_QUESTIONS = 5
 
   has_many :participant_instruments, dependent: :destroy

@@ -12,8 +12,7 @@ class ParticipantsController < ApplicationController
   end
 
   def create
-    @participant = Participant.new(participant_params)
-    @participant.psychologist = current_psychologist
+    @participant = current_psychologist.participants.build(participant_params)
 
     return redirect_to @participant, notice: t('.success') if @participant.save
 
